@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 
 import { OrdensproducaoRoutingModule } from './ordensproducao-routing.module';
 import { OrdensproducaoComponent } from './ordensproducao/ordensproducao.component';
@@ -11,7 +12,8 @@ import { OrdensproducaoComponent } from './ordensproducao/ordensproducao.compone
   ],
   imports: [
     CommonModule,
-    OrdensproducaoRoutingModule
+    OrdensproducaoRoutingModule,
+    MatTableModule
   ]
 })
 export class OrdensproducaoModule { }
