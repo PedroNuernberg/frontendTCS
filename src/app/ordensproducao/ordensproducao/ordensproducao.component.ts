@@ -1,3 +1,4 @@
+import { OrdensproducaoService } from './../services/ordensproducao.service';
 import { Component, OnInit } from '@angular/core';
 import { Ordemproducao } from '../models/ordemproducao';
 
@@ -8,13 +9,13 @@ import { Ordemproducao } from '../models/ordemproducao';
 })
 export class OrdensproducaoComponent implements OnInit {
 
-  ordensproducao: Ordemproducao[] = [
-    {_id: '1', name: '001-1604', category: 'andamento '}
-  ];
+  ordensproducao: Ordemproducao[] = [];
   displayedColumns = ['name','category'];
 
-  constructor() {
-    //this.ordensproducao = [];
+  //ordemProducaoService: OrdensproducaoService;
+
+  constructor(private ordemProducaoService: OrdensproducaoService) {
+    this.ordensproducao = this.ordemProducaoService.list();
   }
 
   ngOnInit(): void {
