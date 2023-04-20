@@ -1,6 +1,7 @@
 import { OrdensproducaoService } from './../services/ordensproducao.service';
 import { Component, OnInit } from '@angular/core';
 import { Ordemproducao } from '../models/ordemproducao';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ordensproducao',
@@ -9,13 +10,13 @@ import { Ordemproducao } from '../models/ordemproducao';
 })
 export class OrdensproducaoComponent implements OnInit {
 
-  ordensproducao: Ordemproducao[] = [];
+  ordensproducao$: Observable <Ordemproducao[]>;
   displayedColumns = ['name','category'];
 
   //ordemProducaoService: OrdensproducaoService;
 
   constructor(private ordemProducaoService: OrdensproducaoService) {
-    this.ordensproducao = this.ordemProducaoService.list();
+    this.ordensproducao$ = this.ordemProducaoService.list();
   }
 
   ngOnInit(): void {
