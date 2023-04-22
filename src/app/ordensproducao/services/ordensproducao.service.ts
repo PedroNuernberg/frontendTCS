@@ -9,7 +9,7 @@ import { delay, first } from 'rxjs';
 })
 export class OrdensproducaoService {
 
-  private readonly API = '/assets/ordensproducao.json'
+  private readonly API = 'http://localhost:8091/api/ordemProducao/'
 
   constructor(private httpClient: HttpClient) { }
 

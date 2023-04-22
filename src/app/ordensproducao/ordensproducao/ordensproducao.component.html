@@ -7,16 +7,16 @@
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Op.</th>
         <td mat-cell *matCellDef="let ordemproducao">
-          {{ ordemproducao.name }}
+          {{ ordemproducao.loteOp }}
         </td>
       </ng-container>
 
       <!-- Category Column -->
       <ng-container matColumnDef="category">
-        <th mat-header-cell *matHeaderCellDef>Categoria</th>
+        <th mat-header-cell *matHeaderCellDef>Status</th>
         <td mat-cell *matCellDef="let ordemproducao">
-          {{ ordemproducao.category }}
-          <mat-icon aria-hidden="false" aria-label="Categoria da Op">{{ ordemproducao.category | category }}</mat-icon>
+          {{ ordemproducao.statusOrdemProducao }}
+          <mat-icon aria-hidden="false" aria-label="Categoria da Op">{{ ordemproducao.statusOrdemProducao | category }}</mat-icon>
 
         </td>
       </ng-container>
@@ -32,25 +32,3 @@
     </div>
   </ng-template></mat-card-content>
 </mat-card>
-<!-- <table mat-table [dataSource]="ordensproducao$" class="mat-elevation-z8">
-  <!-- Name Column -->
-  <!-- <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Op.</th>
-    <td mat-cell *matCellDef="let ordemproducao">
-      {{ ordemproducao.name }}
-    </td>
-  </ng-container> -->
-
-  <!-- Category Column -->
-  <!-- <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef>Categoria</th>
-    <td mat-cell *matCellDef="let ordemproducao">
-      {{ ordemproducao.category }}
-      <mat-icon aria-hidden="false" aria-label="Categoria da Op">{{ ordemproducao.category | category }}</mat-icon>
-
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>  -->
