@@ -1,19 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
 
+import { AppMaterialModule } from '../shared/app-material/app-material.module';
+import { SharedModule } from '../shared/shared.module';
 import { OrdensproducaoRoutingModule } from './ordensproducao-routing.module';
 import { OrdensproducaoComponent } from './ordensproducao/ordensproducao.component';
+import { OrdensproducaoFormComponent } from './ordensproducao-form/ordensproducao-form.component';
 
 
 @NgModule({
   declarations: [
-    OrdensproducaoComponent
+    OrdensproducaoComponent,
+    OrdensproducaoFormComponent
   ],
   imports: [
     CommonModule,
     OrdensproducaoRoutingModule,
-    MatTableModule
+    AppMaterialModule,
+    SharedModule
   ]
 })
 export class OrdensproducaoModule { }
