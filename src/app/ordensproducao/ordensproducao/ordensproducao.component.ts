@@ -5,6 +5,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { Ordemproducao } from '../models/ordemproducao';
 import { OrdensproducaoService } from './../services/ordensproducao.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ordensproducao',
@@ -14,12 +15,14 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 export class OrdensproducaoComponent implements OnInit {
 
   ordensproducao$: Observable <Ordemproducao[]>;
-  displayedColumns = ['name','category'];
+  displayedColumns = ['name','category', 'actions'];
 
   //ordemProducaoService: OrdensproducaoService;
 
   constructor(private ordemProducaoService: OrdensproducaoService,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private router: Router,
+              private route: ActivatedRoute
               ) {
     this.ordensproducao$ = this.ordemProducaoService.list()
     .pipe(
@@ -37,6 +40,12 @@ export class OrdensproducaoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  }
+
+  onAdd() {
+    this.router.navigate(['novo'], {relativeTo: this.route});
+
   }
 
 }
