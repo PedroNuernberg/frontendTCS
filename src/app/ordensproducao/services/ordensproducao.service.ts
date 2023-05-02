@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { first } from 'rxjs';
 
 import { Ordemproducao } from '../models/ordemproducao';
-import { delay, first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdensproducaoService {
 
-  private readonly API = 'http://localhost:8091/api/ordemProducao/'
+  private readonly API = 'http://localhost:8080/api/ordemProducao/'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,5 +19,9 @@ export class OrdensproducaoService {
       first(),
       //delay(5000),
     );
+  }
+
+  save(record: Ordemproducao) {
+    return this.httpClient.post<Ordemproducao>(this.API, record);
   }
 }

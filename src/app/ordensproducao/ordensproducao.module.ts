@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { OrdensproducaoRoutingModule } from './ordensproducao-routing.module';
 import { OrdensproducaoComponent } from './ordensproducao/ordensproducao.component';
 import { OrdensproducaoFormComponent } from './ordensproducao-form/ordensproducao-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { OrdensproducaoFormComponent } from './ordensproducao-form/ordensproduca
     CommonModule,
     OrdensproducaoRoutingModule,
     AppMaterialModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class OrdensproducaoModule { }
