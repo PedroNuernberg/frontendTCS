@@ -7,12 +7,14 @@ import { OrdensproducaoRoutingModule } from './ordensproducao-routing.module';
 import { OrdensproducaoComponent } from './ordensproducao/ordensproducao.component';
 import { OrdensproducaoFormComponent } from './ordensproducao-form/ordensproducao-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrdensproducaoListComponent } from './ordensproducao-list/ordensproducao-list.component';
 
 
 @NgModule({
   declarations: [
     OrdensproducaoComponent,
-    OrdensproducaoFormComponent
+    OrdensproducaoFormComponent,
+    OrdensproducaoListComponent
   ],
   imports: [
     CommonModule,

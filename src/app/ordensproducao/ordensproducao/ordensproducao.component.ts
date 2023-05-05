@@ -15,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class OrdensproducaoComponent implements OnInit {
 
   ordensproducao$: Observable <Ordemproducao[]>;
-  displayedColumns = ['name','category', 'actions'];
+  
 
   //ordemProducaoService: OrdensproducaoService;
 
