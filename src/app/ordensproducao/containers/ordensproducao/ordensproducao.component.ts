@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, Observable, of } from 'rxjs';
 
-import { Ordemproducao } from '../models/ordemproducao';
-import { OrdensproducaoService } from './../services/ordensproducao.service';
+import { Ordemproducao } from '../../models/ordemproducao';
+import { OrdensproducaoService } from '../../services/ordensproducao.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class OrdensproducaoComponent implements OnInit {
 
   ordensproducao$: Observable <Ordemproducao[]>;
-  
+
 
   //ordemProducaoService: OrdensproducaoService;
 

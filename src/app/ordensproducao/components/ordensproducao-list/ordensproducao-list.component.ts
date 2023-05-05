@@ -1,6 +1,6 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Ordemproducao } from './../models/ordemproducao';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { Ordemproducao } from '../../models/ordemproducao';
 
 @Component({
   selector: 'app-ordensproducao-list',
@@ -10,17 +10,16 @@ import { Component, Input } from '@angular/core';
 export class OrdensproducaoListComponent {
 
   @Input() ordensproducao: Ordemproducao[] = [];
+  @Output() add = new EventEmitter(false);
 
    readonly displayedColumns = ['name','category', 'actions'];
 
-  constructor (private router: Router,
-    private route: ActivatedRoute) {
+  constructor () {
 
     }
 
     onAdd() {
-      this.router.navigate(['novo'], {relativeTo: this.route});
-
+      this.add.emit(true);
     }
 
 }

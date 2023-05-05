@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
 import { OrdensproducaoRoutingModule } from './ordensproducao-routing.module';
-import { OrdensproducaoComponent } from './ordensproducao/ordensproducao.component';
-import { OrdensproducaoFormComponent } from './ordensproducao-form/ordensproducao-form.component';
+import { OrdensproducaoComponent } from './containers/ordensproducao/ordensproducao.component';
+import { OrdensproducaoFormComponent } from './containers/ordensproducao-form/ordensproducao-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { OrdensproducaoListComponent } from './ordensproducao-list/ordensproducao-list.component';
+import { OrdensproducaoListComponent } from './components/ordensproducao-list/ordensproducao-list.component';
 
 
 @NgModule({

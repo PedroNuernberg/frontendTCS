@@ -8,6 +8,7 @@
     <app-ordensproducao-list
       *ngIf="ordensproducao$ | async as ordensproducao; else loading"
       [ordensproducao]="ordensproducao"
+      (add)="onAdd()"
     ></app-ordensproducao-list>
 
     <ng-template #loading>
