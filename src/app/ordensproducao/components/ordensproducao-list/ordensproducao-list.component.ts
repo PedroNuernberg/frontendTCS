@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Ordemproducao } from '../../models/ordemproducao';
+import { Ordemproducao } from './../../models/ordemproducao';
 
 @Component({
   selector: 'app-ordensproducao-list',
@@ -11,6 +11,7 @@ export class OrdensproducaoListComponent {
 
   @Input() ordensproducao: Ordemproducao[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
    readonly displayedColumns = ['name','category', 'actions'];
 
@@ -20,6 +21,11 @@ export class OrdensproducaoListComponent {
 
     onAdd() {
       this.add.emit(true);
+    }
+
+    onEdit(ordemproducao: Ordemproducao) {
+      this.edit.emit(ordemproducao);
+
     }
 
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first } from 'rxjs';
 
-import { Ordemproducao } from '../models/ordemproducao';
+import { Ordemproducao } from './../models/ordemproducao';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,10 @@ export class OrdensproducaoService {
       first(),
       //delay(5000),
     );
+  }
+
+  loadById(id: BigInteger) {
+    return this.httpClient.get<Ordemproducao>(`${this.API}${id}`);
   }
 
   save(record: Ordemproducao) {

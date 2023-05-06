@@ -22,6 +22,7 @@ export class OrdensproducaoFormComponent implements OnInit {
     private snackBar: MatSnackBar,
     private location: Location) {
     this.form = this.formBuilder.group({
+      id: [null],
       loteOp: [null],
       statusOrdemProducao: [null],
       dataInicialOp: [null],

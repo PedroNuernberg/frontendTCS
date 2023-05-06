@@ -48,4 +48,9 @@ export class OrdensproducaoComponent implements OnInit {
 
   }
 
+  onEdit(ordemproducao: Ordemproducao) {
+    this.router.navigate(['editar', ordemproducao.id], {relativeTo: this.route});
+
+  }
+
 }

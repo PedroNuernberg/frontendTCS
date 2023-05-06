@@ -1,7 +1,7 @@
 export interface Ordemproducao {
-  id: BigInteger;
-  dataInicialOp: Date;
+  id: string;
+  dataInicialOp: string;
   statusOrdemProducao: string;
-  qtdePecasOp: BigInt;
+  qtdePecasOp: string;
   loteOp: string;
 }
