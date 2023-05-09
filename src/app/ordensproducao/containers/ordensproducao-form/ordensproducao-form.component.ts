@@ -1,8 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
+import { Ordemproducao } from '../../models/ordemproducao';
 import { OrdensproducaoService } from '../../services/ordensproducao.service';
 
 @Component({
@@ -13,26 +15,34 @@ import { OrdensproducaoService } from '../../services/ordensproducao.service';
 export class OrdensproducaoFormComponent implements OnInit {
 
 
-  form: FormGroup;
+  form = this.formBuilder.group({
+    id: [''],
+    loteOp: [''],
+    statusOrdemProducao: [''],
+    dataInicialOp: [''],
+    qtdePecasOp: ['']
+  });
 
 
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: NonNullableFormBuilder,
     private service: OrdensproducaoService,
     private snackBar: MatSnackBar,
-    private location: Location) {
-    this.form = this.formBuilder.group({
-      id: [null],
-      loteOp: [null],
-      statusOrdemProducao: [null],
-      dataInicialOp: [null],
-      qtdePecasOp: [null]
-    });
+    private location: Location,
+    private route: ActivatedRoute) {
+    // this.form
 
   }
 
   ngOnInit(): void {
-
+    const ordemproducao: Ordemproducao = this.route.snapshot.data['ordemproducao'];
+    this.form.setValue({
+      id: ordemproducao.id,
+      loteOp: ordemproducao.loteOp,
+      statusOrdemProducao: ordemproducao.statusOrdemProducao,
+      dataInicialOp: ordemproducao.dataInicialOp,
+      qtdePecasOp: ordemproducao.qtdePecasOp
+    })
   }
 
   onSubmit() {

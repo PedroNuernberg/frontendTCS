@@ -21,11 +21,22 @@ export class OrdensproducaoService {
     );
   }
 
-  loadById(id: BigInteger) {
+  loadById(id: string) {
     return this.httpClient.get<Ordemproducao>(`${this.API}${id}`);
   }
 
-  save(record: Ordemproducao) {
+  save(record: Partial<Ordemproducao>) {
+    if (record.id) {
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Ordemproducao>) {
     return this.httpClient.post<Ordemproducao>(this.API, record);
+  }
+
+  private update(record: Partial<Ordemproducao>) {
+    return this.httpClient.put<Ordemproducao>(`${this.API}${record.id}`, record);
   }
 }
