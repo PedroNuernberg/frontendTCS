@@ -7,6 +7,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 
 import { Ordemproducao } from '../../models/ordemproducao';
 import { OrdensproducaoService } from '../../services/ordensproducao.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-ordensproducao',
@@ -58,17 +59,24 @@ export class OrdensproducaoComponent implements OnInit {
   }
 
   onRemove(ordemproducao: Ordemproducao) {
-    this.ordemProducaoService.remove(ordemproducao.id).subscribe(
-      () => {
-        this.refresh();
-        this.snackBar.open('Curso removido com sucesso!', 'X', {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
-       });
-      },
-      () => this.onError('Erro ao tentar remover curso.')
-    );
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Tem certeza que deseja remover essa ordem de produção?',
+    });
 
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.ordemProducaoService.remove(ordemproducao.id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Curso removido com sucesso!', 'X', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+           });
+          },
+          () => this.onError('Erro ao tentar remover curso.')
+        );
+      }
+    });
   }
 }
