@@ -12,6 +12,7 @@ export class OrdensproducaoListComponent {
   @Input() ordensproducao: Ordemproducao[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
 
    readonly displayedColumns = ['name','category', 'actions'];
 
@@ -25,7 +26,9 @@ export class OrdensproducaoListComponent {
 
     onEdit(ordemproducao: Ordemproducao) {
       this.edit.emit(ordemproducao);
-
     }
 
+    onDelete(ordemproducao: Ordemproducao) {
+      this.remove.emit(ordemproducao);
+    }
 }

@@ -39,4 +39,9 @@ export class OrdensproducaoService {
   private update(record: Partial<Ordemproducao>) {
     return this.httpClient.put<Ordemproducao>(`${this.API}${record.id}`, record);
   }
+
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}${id}`).pipe(first());
+  }
 }
+  
