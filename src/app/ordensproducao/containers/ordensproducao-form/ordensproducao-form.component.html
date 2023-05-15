@@ -4,7 +4,11 @@
     <mat-toolbar color="primary">Incluir Ordem de Produção</mat-toolbar>
     <form [formGroup]="form" class="min-width">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Lote Op" formControlName="loteOp">
+        <input matInput placeholder="Lote Op" formControlName="loteOp" #loteOp>
+        <mat-hint align="end">{{ loteOp.value?.length || 0 }}/20 </mat-hint>
+        <mat-error *ngIf="form.get('loteOp')?.invalid">{{
+          getErrorMessage("loteOp")
+        }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
@@ -17,6 +21,9 @@
           <mat-option value="EmProducao">Em produção</mat-option>
           <mat-option value="AguardandoEnvio">Aguardando Envio</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.get('statusOrdemProducao')?.invalid">{{
+          getErrorMessage("statusOrdemProducao")
+        }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">

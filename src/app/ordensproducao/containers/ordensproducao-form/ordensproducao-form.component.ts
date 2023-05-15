@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,8 +17,9 @@ export class OrdensproducaoFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     id: [''],
-    loteOp: [''],
-    statusOrdemProducao: [''],
+    loteOp: ['', [Validators.required,
+                  Validators.maxLength(20)]],
+    statusOrdemProducao: ['', [Validators.required]],
     dataInicialOp: [''],
     qtdePecasOp: ['']
   });
@@ -63,5 +64,25 @@ export class OrdensproducaoFormComponent implements OnInit {
   private onError() {
     this.snackBar.open('Erro ao incluir Ordem de Produção!', '', {duration: 3000 });
 
+  }
+
+  getErrorMessage(fieldName: string) {
+    const field = this.form.get(fieldName);
+
+    if(field?.hasError('required')) {
+      return 'Campo obrigatório'
+    }
+
+    // if(field?.hasError('minlength')) {
+    //   const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
+    //   return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+    // }
+
+    if(field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 20;
+      return `Tamanho máximo de ${requiredLength} caracteres excedido.`;
+    }
+
+    return 'Campo Inválido';
   }
 }
