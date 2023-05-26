@@ -1,0 +1,36 @@
+<mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nomeUsuario">
+    <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.nomeUsuario }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="senhaUsuario">
+    <mat-header-cell *matHeaderCellDef>Senha</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.senhaUsuario }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="tipoUsuario">
+    <mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.tipoUsuario }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="emailUsuario">
+    <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.emailUsuario }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="enumStatus">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.enumStatus }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
