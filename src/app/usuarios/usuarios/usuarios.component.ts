@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { UsuariosService } from '../services/usuarios.service';
 import { Usuario } from '../models/Usuario';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-usuarios',
@@ -13,6 +14,7 @@ export class UsuariosComponent {
   usuarios!: Usuario[];
   dataSource: any;
   displayedColumns = ['id','nomeUsuario', 'senhaUsuario', 'tipoUsuario', 'emailUsuario', 'enumStatus'];
+  @ViewChild(MatPaginator) paginator !:MatPaginator;
 
 
 
@@ -20,11 +22,8 @@ export class UsuariosComponent {
     this.usuariosService.GetUsuario().subscribe(res => {
       this.usuarios = res;
       this.dataSource = new MatTableDataSource<Usuario>(this.usuarios);
+      this.dataSource.paginator = this.paginator;
 
     });
-
-
-
   }
-
 }
