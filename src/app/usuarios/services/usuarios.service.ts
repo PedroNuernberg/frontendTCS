@@ -16,4 +16,19 @@ export class UsuariosService {
     return this.httpClient.get<Usuario[]>(this.API)
 
   }
+
+  save(record: Partial<Usuario>) {
+    if (record.id) {
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Usuario>) {
+    return this.httpClient.post<Usuario>(this.API, record);
+  }
+
+  private update(record: Partial<Usuario>) {
+    return this.httpClient.put<Usuario>(`${this.API}${record.id}`, record);
+  }
 }

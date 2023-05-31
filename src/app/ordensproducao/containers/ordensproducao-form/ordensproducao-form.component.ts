@@ -14,7 +14,6 @@ import { OrdensproducaoService } from '../../services/ordensproducao.service';
 })
 export class OrdensproducaoFormComponent implements OnInit {
 
-
   form = this.formBuilder.group({
     id: [''],
     loteOp: ['', [Validators.required,
@@ -23,8 +22,6 @@ export class OrdensproducaoFormComponent implements OnInit {
     dataInicialOp: [''],
     qtdePecasOp: ['']
   });
-
-
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: OrdensproducaoService,
