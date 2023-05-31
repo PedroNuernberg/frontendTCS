@@ -68,13 +68,13 @@ export class OrdensproducaoComponent implements OnInit {
         this.ordemProducaoService.remove(ordemproducao.id).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Curso removido com sucesso!', 'X', {
+            this.snackBar.open('Ordem de produção removida com sucesso!', 'X', {
               duration: 3000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
            });
           },
-          () => this.onError('Erro ao tentar remover curso.')
+          () => this.onError('Erro ao tentar remover Ordem de produção.')
         );
       }
     });
