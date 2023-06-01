@@ -12,6 +12,13 @@ export class UsuariosService {
 
   constructor(private httpClient: HttpClient) { }
 
+
+  loadById(id: string) {
+    return this.httpClient.get<Usuario>(`${this.API}${id}`);
+
+  }
+
+
   GetUsuario():Observable<Usuario[]> {
     return this.httpClient.get<Usuario[]>(this.API)
 
