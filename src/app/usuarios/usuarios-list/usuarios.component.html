@@ -9,8 +9,8 @@
     <mat-table [dataSource]="dataSource">
 
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+        <mat-header-cell [class.mat-cell-hide]="true" *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell [class.mat-cell-hide]="true" *matCellDef="let element">{{ element.id }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="nomeUsuario">
@@ -19,8 +19,8 @@
       </ng-container>
 
       <ng-container matColumnDef="senhaUsuario">
-        <mat-header-cell *matHeaderCellDef>Senha</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.senhaUsuario }}</mat-cell>
+        <mat-header-cell [class.mat-cell-hide]="true" *matHeaderCellDef>Senha</mat-header-cell>
+        <mat-cell [class.mat-cell-hide]="true" *matCellDef="let element">{{ element.senhaUsuario }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="tipoUsuario">
