@@ -56,12 +56,12 @@ export class UsuarioFormComponent{
   }
 
   private onSuccess() {
-    this.snackBar.open('Ordem de produção incluída!', '', {duration: 3000 });
+    this.snackBar.open('Usuário incluído!', '', {duration: 3000 });
     this.onCancel();
   }
 
   private onError() {
-    this.snackBar.open('Erro ao incluir Ordem de Produção!', '', {duration: 3000 });
+    this.snackBar.open('Erro ao incluir Usuário!', '', {duration: 3000 });
 
   }
 }

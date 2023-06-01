@@ -12,10 +12,24 @@
       </ng-container>
       
 
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef>Op.</mat-header-cell>
+      <ng-container matColumnDef="loteOp">
+        <mat-header-cell *matHeaderCellDef>OP nº</mat-header-cell>
         <mat-cell *matCellDef="let ordemproducao">
           {{ ordemproducao.loteOp }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dataInicialOp">
+        <mat-header-cell *matHeaderCellDef>Data inicial</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.dataInicialOp }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="qtdePecasOp">
+        <mat-header-cell *matHeaderCellDef>Qtd peças</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.qtdePecasOp }}
         </mat-cell>
       </ng-container>
 

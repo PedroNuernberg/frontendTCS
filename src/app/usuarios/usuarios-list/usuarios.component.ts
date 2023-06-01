@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 import { Usuario } from '../models/Usuario';
 import { UsuariosService } from '../services/usuarios.service';
@@ -56,9 +57,15 @@ export class UsuariosComponent {
     this.router.navigate(['editar', usuario.id], {relativeTo: this.route});
   }
 
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent,{
+      data: errorMsg
+    });
+  }
+
   onDelete(usuario: Usuario) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover essa ordem de produção?',
+      data: 'Tem certeza que deseja remover esse usuário?',
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
@@ -66,13 +73,13 @@ export class UsuariosComponent {
         this.usuariosService.remove(usuario.id).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Ordem de produção removida com sucesso!', 'X', {
+            this.snackBar.open('Usuário removido com sucesso!', 'X', {
               duration: 3000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
            });
           },
-          //() => this.onError('Erro ao tentar remover Ordem de produção.')
+          () => this.onError('Erro ao tentar remover Usuário.')
         );
       }
     });
