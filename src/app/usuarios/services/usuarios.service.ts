@@ -31,4 +31,8 @@ export class UsuariosService {
   private update(record: Partial<Usuario>) {
     return this.httpClient.put<Usuario>(`${this.API}${record.id}`, record);
   }
+
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}${id}`).pipe();
+  }
 }

@@ -1,19 +1,21 @@
 <mat-table [dataSource]="ordensproducao">
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef>Op.</mat-header-cell>
-        <mat-cell *matCellDef="let ordemproducao">
-          {{ ordemproducao.loteOp }}
-        </mat-cell>
-      </ng-container>
+      
 
       <!-- Category Column -->
       <ng-container matColumnDef="category">
         <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
         <mat-cell *matCellDef="let ordemproducao">
-          {{ ordemproducao.statusOrdemProducao }}
           <mat-icon aria-hidden="false" aria-label="Categoria da Op">{{ ordemproducao.statusOrdemProducao | category }}</mat-icon>
+          {{ ordemproducao.statusOrdemProducao }}
+        </mat-cell>
+      </ng-container>
+      
 
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Op.</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.loteOp }}
         </mat-cell>
       </ng-container>
 

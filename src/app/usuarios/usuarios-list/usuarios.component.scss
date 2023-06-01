@@ -5,3 +5,11 @@ mat-card {
 .mat-cell-hide {
   display: none;
 }
+
+.action-column-header {
+  margin: 0 auto;
+}
+
+.action-column {
+  flex: 0 0 125px;
+}

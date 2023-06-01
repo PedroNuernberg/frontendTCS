@@ -1,9 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { UsuariosService } from '../services/usuarios.service';
-import { Usuario } from '../models/Usuario';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+
+import { Usuario } from '../models/Usuario';
+import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -14,7 +18,7 @@ export class UsuariosComponent {
 
   usuarios!: Usuario[];
   dataSource: any;
-  displayedColumns = ['id','nomeUsuario', 'senhaUsuario', 'tipoUsuario', 'emailUsuario', 'enumStatus', 'actions'];
+  displayedColumns = ['nomeUsuario', 'tipoUsuario', 'emailUsuario', 'enumStatus', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
 
 
@@ -22,7 +26,9 @@ export class UsuariosComponent {
   constructor(
     private usuariosService: UsuariosService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog) {
     this.usuariosService.GetUsuario().subscribe(res => {
       this.usuarios = res;
       this.dataSource = new MatTableDataSource<Usuario>(this.usuarios);
@@ -31,8 +37,44 @@ export class UsuariosComponent {
     });
   }
 
+  refresh() {
+    // this.usuarios = this.usuariosService.GetUsuario()
+    // .pipe(
+    //   catchError(error => {
+    //     this.onError('Erro ao carregar ordens de Produção!')
+    //     return of([])
+    //   })
+    // );
+  }
+
   onAdd() {
     this.router.navigate(['novo'], {relativeTo: this.route});
 
+  }
+
+  onEdit(usuario: Usuario) {
+    this.router.navigate(['editar', usuario.id], {relativeTo: this.route});
+  }
+
+  onDelete(usuario: Usuario) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Tem certeza que deseja remover essa ordem de produção?',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.usuariosService.remove(usuario.id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Ordem de produção removida com sucesso!', 'X', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+           });
+          },
+          //() => this.onError('Erro ao tentar remover Ordem de produção.')
+        );
+      }
+    });
   }
 }
