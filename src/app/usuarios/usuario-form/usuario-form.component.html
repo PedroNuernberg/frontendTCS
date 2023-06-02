@@ -1,33 +1,34 @@
-<!-- <mat-card>
+<mat-card>
 
     <mat-card-content>
-      <mat-toolbar color="primary">Incluir Usuário </mat-toolbar>
+      <mat-toolbar color="primary">Usuário </mat-toolbar>
       <form [formGroup]="form" class="min-width">
         <mat-form-field class="full-width">
-          <input matInput placeholder="Nome" formControlName="nomeUsuario" #nomeUsuario>
-          <mat-hint align="end">{{ nomeUsuario.value.length || 0 }}/20 </mat-hint>
-          <mat-error *ngIf="form.get('loteOp')?.invalid">{{
-            getErrorMessage("loteOp")
-          }}</mat-error>
+          <input matInput placeholder="Nome" formControlName="nomeUsuario" #nomeUsuario>        
         </mat-form-field>
-  
+
         <mat-form-field class="full-width">
-          <input matInput placeholder="Data inicial" formControlName="dataInicialOp">
+          <input matInput placeholder="Senha" formControlName="senhaUsuario" #senhaUsuario>        
         </mat-form-field>
-  
+
+        <mat-form-field class="full-width">
+          <mat-label>Tipo usuário</mat-label>
+          <mat-select formControlName="tipoUsuario">
+            <mat-option value="1">Admin</mat-option>
+            <mat-option value="2">Normal</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="E-mail" formControlName="emailUsuario" #emailUsuario>        
+        </mat-form-field>
+
         <mat-form-field class="full-width">
           <mat-label>Status</mat-label>
-          <mat-select formControlName="statusOrdemProducao">
-            <mat-option value="EmProducao">Em produção</mat-option>
-            <mat-option value="AguardandoEnvio">Aguardando Envio</mat-option>
+          <mat-select formControlName="enumStatus">
+            <mat-option value="Ativo">Ativo</mat-option>
+            <mat-option value="Inativo">Inativo</mat-option>
           </mat-select>
-          <mat-error *ngIf="form.get('statusOrdemProducao')?.invalid">{{
-            getErrorMessage("statusOrdemProducao")
-          }}</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Qtd peças" formControlName="qtdePecasOp">
         </mat-form-field>
       </form>
     </mat-card-content>
@@ -37,10 +38,4 @@
       <button mat-raised-button (click)="onCancel()" class="btn-space">Cancelar</button>
     </mat-card-actions>
   
-  </mat-card> -->
-
-  <form >
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Nome" formControlName="nomeUsuario" #nomeUsuario>
-    </mat-form-field>
-  </form>
+  </mat-card>

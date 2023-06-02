@@ -16,6 +16,6 @@ export class OrdemproducaoResolver implements Resolve<Ordemproducao> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({id: '', dataInicialOp: '', statusOrdemProducao: '', qtdePecasOp: '', loteOp: ''});
+    return of({id: '', dataInicialOp: '', statusOrdemProducao: '', qtdePecasOp: 0, loteOp: ''});
   }
 }

@@ -20,7 +20,7 @@ export class OrdensproducaoFormComponent implements OnInit {
                   Validators.maxLength(20)]],
     statusOrdemProducao: ['', [Validators.required]],
     dataInicialOp: [''],
-    qtdePecasOp: ['']
+    qtdePecasOp: [0]
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,

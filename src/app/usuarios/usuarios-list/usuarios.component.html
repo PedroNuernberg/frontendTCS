@@ -46,11 +46,11 @@
         </mat-header-cell>
 
         <mat-cell *matCellDef="let element" class="action-column">
-          <button mat-icon-button color="primary" aria-label="Editar Usuário">
+          <button mat-icon-button color="primary" aria-label="Editar Usuário" (click)="onEdit(element)">
             <mat-icon>edit</mat-icon>
           </button>
 
-          <button mat-icon-button color="warn" aria-label="Remover Usuário">
+          <button mat-icon-button color="warn" aria-label="Remover Usuário" (click)="onDelete(element)">
             <mat-icon>delete</mat-icon>
           </button>
 

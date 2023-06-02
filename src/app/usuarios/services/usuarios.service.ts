@@ -12,6 +12,13 @@ export class UsuariosService {
 
   constructor(private httpClient: HttpClient) { }
 
+
+  loadById(id: string) {
+    return this.httpClient.get<Usuario>(`${this.API}${id}`);
+
+  }
+
+
   GetUsuario():Observable<Usuario[]> {
     return this.httpClient.get<Usuario[]>(this.API)
 
@@ -30,5 +37,9 @@ export class UsuariosService {
 
   private update(record: Partial<Usuario>) {
     return this.httpClient.put<Usuario>(`${this.API}${record.id}`, record);
+  }
+
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}${id}`).pipe();
   }
 }
