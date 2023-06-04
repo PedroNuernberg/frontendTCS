@@ -9,7 +9,7 @@ import { Ordemproducao } from './../models/ordemproducao';
 })
 export class OrdensproducaoService {
 
-  private readonly API = 'http://localhost:8080/api/ordemProducao/'
+  private readonly API = 'http://localhost:8080/api/ordemProducao'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class OrdensproducaoService {
   }
 
   loadById(id: string) {
-    return this.httpClient.get<Ordemproducao>(`${this.API}${id}`);
+    return this.httpClient.get<Ordemproducao>(`${this.API}/${id}`);
   }
 
   save(record: Partial<Ordemproducao>) {
@@ -37,11 +37,11 @@ export class OrdensproducaoService {
   }
 
   private update(record: Partial<Ordemproducao>) {
-    return this.httpClient.put<Ordemproducao>(`${this.API}${record.id}`, record);
+    return this.httpClient.put<Ordemproducao>(`${this.API}/${record.id}`, record);
   }
 
   remove(id: string) {
-    return this.httpClient.delete(`${this.API}${id}`).pipe(first());
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
 }
   

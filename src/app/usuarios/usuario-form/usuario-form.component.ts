@@ -20,7 +20,7 @@ export class UsuarioFormComponent{
     id: [''],
     nomeUsuario: [''],
     senhaUsuario: [''],
-    tipoUsuario: [''],
+    tipoUsuario: [0],
     emailUsuario: [''],
     enumStatus: ['']
   });
