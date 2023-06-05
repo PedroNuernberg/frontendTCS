@@ -1,0 +1,54 @@
+<mat-card>
+
+    <mat-card-content>
+      <mat-toolbar color="primary">Terceiro </mat-toolbar>
+      <form [formGroup]="form" class="min-width">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Razão Social" formControlName="razaoSocial" #razaoSocial>        
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="CNPJ" formControlName="cnpjTerceiro" #cnpjTerceiro>        
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Endereço" formControlName="enderecoTerceiro" #enderecoTerceiro>        
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="CEP" formControlName="cepTerceiro" #cepTerceiro>        
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Bairro" formControlName="bairroTerceiro" #bairroTerceiro>        
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Número" formControlName="numeroTerceiro" #numeroTerceiro>        
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Telefone" formControlName="telefoneTerceiro" #telefoneTerceiro>        
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Contato" formControlName="contatoTerceiro" #contatoTerceiro>        
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="enumStatus">
+            <mat-option value="Ativo">Ativo</mat-option>
+            <mat-option value="Inativo">Inativo</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      </form>
+    </mat-card-content>
+  
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onSubmit()">Salvar </button>
+      <button mat-raised-button (click)="onCancel()" class="btn-space">Cancelar</button>
+    </mat-card-actions>
+  
+  </mat-card>

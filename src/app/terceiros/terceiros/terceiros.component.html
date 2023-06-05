@@ -57,6 +57,26 @@
             <mat-header-cell *matHeaderCellDef>Bairro</mat-header-cell>
             <mat-cell *matCellDef="let element">{{ element.contatoTerceiro }}</mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef class="action-column">
+            <button mat-mini-fab color="accent" aria-label="Novo Usuário" (click)="onAdd()" class="action-column-header">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-header-cell>
+  
+          <mat-cell *matCellDef="let element" class="action-column">
+            <button mat-icon-button color="primary" aria-label="Editar Usuário" (click)="onEdit(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+  
+            <button mat-icon-button color="warn" aria-label="Remover Usuário" (click)="onDelete(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+  
+          </mat-cell>
+  
+        </ng-container>
   
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

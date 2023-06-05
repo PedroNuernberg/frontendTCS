@@ -8,6 +8,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 
 import { Terceiro } from '../models/Terceiro';
 import { TerceirosService } from '../services/terceiros.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-terceiros',
@@ -17,7 +18,7 @@ import { TerceirosService } from '../services/terceiros.service';
 export class TerceirosComponent {
   terceiros!: Terceiro[];
   dataSource: any;
-  displayedColumns = ['razaoSocial', 'cnpjTerceiro', 'enderecoTerceiro', 'cepTerceiro', 'bairroTerceiro', 'numeroTerceiro', 'enumStatus', 'telefoneTerceiro', 'contatoTerceiro'];
+  displayedColumns = ['razaoSocial', 'cnpjTerceiro', 'enderecoTerceiro', 'cepTerceiro', 'bairroTerceiro', 'numeroTerceiro', 'enumStatus', 'telefoneTerceiro', 'contatoTerceiro', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
 
   constructor(
@@ -33,6 +34,16 @@ export class TerceirosComponent {
     });
   }
 
+  refresh() {
+    // this.usuarios = this.usuariosService.GetUsuario()
+    // .pipe(
+    //   catchError(error => {
+    //     this.onError('Erro ao carregar ordens de Produção!')
+    //     return of([])
+    //   })
+    // );
+  }
+
   onAdd() {
     this.router.navigate(['novo'], {relativeTo: this.route});
 
@@ -45,6 +56,28 @@ export class TerceirosComponent {
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent,{
       data: errorMsg
+    });
+  }
+
+  onDelete(usuario: Terceiro) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Tem certeza que deseja remover esse usuário?',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.terceirosService.remove(usuario.id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Usuário removido com sucesso!', 'X', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+           });
+          },
+          () => this.onError('Erro ao tentar remover Usuário.')
+        );
+      }
     });
   }
 
