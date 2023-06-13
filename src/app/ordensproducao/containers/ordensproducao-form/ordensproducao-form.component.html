@@ -16,6 +16,10 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <input matInput placeholder="Data final" formControlName="dataFinalOp">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
         <mat-label>Status</mat-label>
         <mat-select formControlName="statusOrdemProducao">
           <mat-option value="EmProducao">Em produção</mat-option>
@@ -31,13 +35,24 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
+        <mat-label>Situação</mat-label>
+        <mat-select formControlName="enumStatus">
+          <mat-option value="Ativo">Ativo</mat-option>
+          <mat-option value="Inativo">Inativo</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
         <mat-label>Terceiro</mat-label>
         <mat-select formControlName="terceiro">
           <mat-option *ngFor="let terceiro of terceiros" [value]="terceiro">{{ terceiro.razaoSocial }}</mat-option>
         </mat-select>
       </mat-form-field>
 
-
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Oservação" formControlName="obsOp" #obsOp>
+        <mat-hint align="end">{{ obsOp.value.length || 0 }}/255 </mat-hint>
+      </mat-form-field>
 
     </form>
   </mat-card-content>

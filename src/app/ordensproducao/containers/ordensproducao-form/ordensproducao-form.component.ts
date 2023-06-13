@@ -22,7 +22,10 @@ export class OrdensproducaoFormComponent implements OnInit {
                   Validators.maxLength(20)]],
     statusOrdemProducao: ['', [Validators.required]],
     dataInicialOp: ['', [Validators.required]],
+    dataFinalOp: [''],
     qtdePecasOp: [0, [Validators.required]],
+    obsOp: [''],
+    enumStatus: [''],
     terceiro: [{id: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}]
   });
 
@@ -46,8 +49,11 @@ export class OrdensproducaoFormComponent implements OnInit {
       loteOp: ordemproducao.loteOp,
       statusOrdemProducao: ordemproducao.statusOrdemProducao,
       dataInicialOp: ordemproducao.dataInicialOp,
+      dataFinalOp: ordemproducao.dataFinalOp,
       qtdePecasOp: ordemproducao.qtdePecasOp,
-      terceiro: ordemproducao.terceiro
+      terceiro: ordemproducao.terceiro,
+      obsOp: ordemproducao.obsOp,
+      enumStatus: ordemproducao.enumStatus
     })
   }
 
