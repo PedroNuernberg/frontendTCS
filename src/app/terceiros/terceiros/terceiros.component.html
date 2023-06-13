@@ -40,22 +40,22 @@
 
         <ng-container matColumnDef="numeroTerceiro">
             <mat-header-cell *matHeaderCellDef>Número</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.bairroTerceiro }}</mat-cell>
+            <mat-cell *matCellDef="let element">{{ element.numeroTerceiro }}</mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="telefoneTerceiro">
+            <mat-header-cell *matHeaderCellDef>Telefone</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.telefoneTerceiro }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="contatoTerceiro">
+            <mat-header-cell *matHeaderCellDef>Contato</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.contatoTerceiro }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="enumStatus">
           <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
           <mat-cell *matCellDef="let element">{{ element.enumStatus }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="telefoneTerceiro">
-            <mat-header-cell *matHeaderCellDef>Bairro</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.telefoneTerceiro }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="contatoTerceiro">
-            <mat-header-cell *matHeaderCellDef>Bairro</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{ element.contatoTerceiro }}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="actions">

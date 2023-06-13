@@ -54,7 +54,7 @@ export class UsuariosComponent {
   }
 
   onEdit(usuario: Usuario) {
-    this.router.navigate(['editar', usuario.id], {relativeTo: this.route});
+    this.router.navigate(['editar', usuario.idUsuario], {relativeTo: this.route});
   }
 
   onError(errorMsg: string) {
@@ -70,7 +70,7 @@ export class UsuariosComponent {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.usuariosService.remove(usuario.id).subscribe(
+        this.usuariosService.remove(usuario.idUsuario).subscribe(
           () => {
             this.refresh();
             this.snackBar.open('Usuário removido com sucesso!', 'X', {

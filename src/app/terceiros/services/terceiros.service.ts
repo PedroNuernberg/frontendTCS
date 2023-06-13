@@ -28,11 +28,11 @@ export class TerceirosService {
   }
 
   private create(record: Partial<Terceiro>) {
-    return this.httpClient.post<Terceiro>(this.API, record);
+    return this.httpClient.post<Terceiro>(`${this.API}/`, record);
   }
 
   private update(record: Partial<Terceiro>) {
-    return this.httpClient.put<Terceiro>(`${this.API}${record.id}`, record);
+    return this.httpClient.put<Terceiro>(`${this.API}/${record.id}`, record);
   }
 
   remove(id: string) {

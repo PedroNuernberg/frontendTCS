@@ -1,3 +1,5 @@
+import { Usuario } from './../../usuarios/models/Usuario';
+
 export interface Terceiro {
     id: string;
     razaoSocial: string;
@@ -9,7 +11,5 @@ export interface Terceiro {
     enumStatus: string;
     telefoneTerceiro: string;
     contatoTerceiro: string;
-
-    //Usuario
-  
+    usuario: Usuario;
 }

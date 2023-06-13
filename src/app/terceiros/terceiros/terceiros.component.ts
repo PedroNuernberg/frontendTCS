@@ -18,7 +18,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
 export class TerceirosComponent {
   terceiros!: Terceiro[];
   dataSource: any;
-  displayedColumns = ['razaoSocial', 'cnpjTerceiro', 'enderecoTerceiro', 'cepTerceiro', 'bairroTerceiro', 'numeroTerceiro', 'enumStatus', 'telefoneTerceiro', 'contatoTerceiro', 'actions'];
+  displayedColumns = ['razaoSocial', 'cnpjTerceiro', 'enderecoTerceiro', 'cepTerceiro', 'bairroTerceiro', 'numeroTerceiro', 'telefoneTerceiro', 'contatoTerceiro', 'enumStatus', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
 
   constructor(

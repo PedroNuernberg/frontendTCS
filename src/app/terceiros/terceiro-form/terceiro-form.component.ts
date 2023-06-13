@@ -1,11 +1,13 @@
+import { Usuario } from './../../usuarios/models/Usuario';
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
-import { TerceirosService } from '../services/terceiros.service';
 import { Terceiro } from '../models/Terceiro';
+import { TerceirosService } from '../services/terceiros.service';
+import { UsuariosService } from 'src/app/usuarios/services/usuarios.service';
 
 @Component({
   selector: 'app-terceiro-form',
@@ -13,6 +15,7 @@ import { Terceiro } from '../models/Terceiro';
   styleUrls: ['./terceiro-form.component.scss']
 })
 export class TerceiroFormComponent {
+  usuarios!: any[];
 
   form = this.formBuilder.group({
     id: [''],
@@ -25,21 +28,29 @@ export class TerceiroFormComponent {
     enumStatus: [''],
     telefoneTerceiro: [''],
     contatoTerceiro: [''],
+    usuario: [{idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}]
   });
+
+  
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private route: ActivatedRoute,
     private service: TerceirosService,
     private snackBar: MatSnackBar,
-    private location: Location) {
+    private location: Location,
+    private usuarioService: UsuariosService) {
   }
 
   ngOnInit(): void {
+
+    this.usuarioService.GetUsuario()
+      .subscribe(dados => {this.usuarios = dados; console.log(dados);});
+
     const terceiro: Terceiro = this.route.snapshot.data['terceiro'];
     this.form.setValue({
       id: terceiro.id,
       razaoSocial: terceiro.razaoSocial,
-      cnpjTerceiro: terceiro.cepTerceiro,
+      cnpjTerceiro: terceiro.cnpjTerceiro,
       enderecoTerceiro: terceiro.enderecoTerceiro,
       cepTerceiro: terceiro.cepTerceiro,
       bairroTerceiro: terceiro.bairroTerceiro,
@@ -47,9 +58,7 @@ export class TerceiroFormComponent {
       enumStatus: terceiro.enumStatus,
       telefoneTerceiro: terceiro.telefoneTerceiro,
       contatoTerceiro: terceiro.contatoTerceiro,
-      
-
-
+      usuario: terceiro.usuario
     })
   }
 
