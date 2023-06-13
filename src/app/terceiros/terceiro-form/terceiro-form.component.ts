@@ -44,7 +44,7 @@ export class TerceiroFormComponent {
   ngOnInit(): void {
 
     this.usuarioService.GetUsuario()
-      .subscribe(dados => {this.usuarios = dados; console.log(dados);});
+      .subscribe(dados => this.usuarios = dados);
 
     const terceiro: Terceiro = this.route.snapshot.data['terceiro'];
     this.form.setValue({
