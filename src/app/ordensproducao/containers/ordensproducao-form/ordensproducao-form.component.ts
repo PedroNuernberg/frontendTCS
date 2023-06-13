@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { TerceirosService } from 'src/app/terceiros/services/terceiros.service';
 
 import { Ordemproducao } from '../../models/ordemproducao';
 import { OrdensproducaoService } from '../../services/ordensproducao.service';
@@ -13,33 +14,40 @@ import { OrdensproducaoService } from '../../services/ordensproducao.service';
   styleUrls: ['./ordensproducao-form.component.scss']
 })
 export class OrdensproducaoFormComponent implements OnInit {
+  terceiros!: any[];
 
   form = this.formBuilder.group({
     id: [''],
     loteOp: ['', [Validators.required,
                   Validators.maxLength(20)]],
     statusOrdemProducao: ['', [Validators.required]],
-    dataInicialOp: [''],
-    qtdePecasOp: [0]
+    dataInicialOp: ['', [Validators.required]],
+    qtdePecasOp: [0, [Validators.required]],
+    terceiro: [{id: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}]
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: OrdensproducaoService,
     private snackBar: MatSnackBar,
     private location: Location,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private terceiroService: TerceirosService) {
     // this.form
 
   }
 
   ngOnInit(): void {
+    this.terceiroService.GetTerceiros()
+      .subscribe(dados => this.terceiros = dados);
+
     const ordemproducao: Ordemproducao = this.route.snapshot.data['ordemproducao'];
     this.form.setValue({
       id: ordemproducao.id,
       loteOp: ordemproducao.loteOp,
       statusOrdemProducao: ordemproducao.statusOrdemProducao,
       dataInicialOp: ordemproducao.dataInicialOp,
-      qtdePecasOp: ordemproducao.qtdePecasOp
+      qtdePecasOp: ordemproducao.qtdePecasOp,
+      terceiro: ordemproducao.terceiro
     })
   }
 

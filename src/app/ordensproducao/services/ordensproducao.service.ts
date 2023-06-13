@@ -27,13 +27,13 @@ export class OrdensproducaoService {
 
   save(record: Partial<Ordemproducao>) {
     if (record.id) {
-      return this.update(record);
+      return this.update(record) ;
     }
     return this.create(record);
   }
 
   private create(record: Partial<Ordemproducao>) {
-    return this.httpClient.post<Ordemproducao>(this.API, record);
+    return this.httpClient.post<Ordemproducao>(`${this.API}/`, record);
   }
 
   private update(record: Partial<Ordemproducao>) {

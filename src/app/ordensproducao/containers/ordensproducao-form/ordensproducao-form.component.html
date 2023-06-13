@@ -29,6 +29,16 @@
       <mat-form-field class="full-width">
         <input matInput placeholder="Qtd peças" formControlName="qtdePecasOp">
       </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Terceiro</mat-label>
+        <mat-select formControlName="terceiro">
+          <mat-option *ngFor="let terceiro of terceiros" [value]="terceiro">{{ terceiro.razaoSocial }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
     </form>
   </mat-card-content>
 
