@@ -4,37 +4,33 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
-import { Usuario } from '../models/Usuario';
-import { UsuariosService } from '../services/usuarios.service';
+import { Terceiro } from '../models/Terceiro';
+import { TerceirosService } from '../services/terceiros.service';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
+  selector: 'app-terceiros',
+  templateUrl: './terceiros.component.html',
+  styleUrls: ['./terceiros.component.scss']
 })
-export class UsuariosComponent {
-
-  usuarios!: Usuario[];
+export class TerceirosComponent {
+  terceiros!: Terceiro[];
   dataSource: any;
-  displayedColumns = ['nomeUsuario', 'tipoUsuario', 'emailUsuario', 'enumStatus', 'actions'];
+  displayedColumns = ['razaoSocial', 'cnpjTerceiro', 'enderecoTerceiro', 'cepTerceiro', 'bairroTerceiro', 'numeroTerceiro', 'telefoneTerceiro', 'contatoTerceiro', 'enumStatus', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
 
-
-
   constructor(
-    private usuariosService: UsuariosService,
+    private terceirosService: TerceirosService,
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     public dialog: MatDialog) {
-    this.usuariosService.GetUsuario().subscribe(res => {
-      this.usuarios = res;
-      this.dataSource = new MatTableDataSource<Usuario>(this.usuarios);
+    this.terceirosService.GetTerceiros().subscribe(res => {
+      this.terceiros = res;
+      this.dataSource = new MatTableDataSource<Terceiro>(this.terceiros);
       this.dataSource.paginator = this.paginator;
-
     });
   }
 
@@ -53,8 +49,8 @@ export class UsuariosComponent {
 
   }
 
-  onEdit(usuario: Usuario) {
-    this.router.navigate(['editar', usuario.idUsuario], {relativeTo: this.route});
+  onEdit(usuario: Terceiro) {
+    this.router.navigate(['editar', usuario.id], {relativeTo: this.route});
   }
 
   onError(errorMsg: string) {
@@ -63,14 +59,14 @@ export class UsuariosComponent {
     });
   }
 
-  onDelete(usuario: Usuario) {
+  onDelete(usuario: Terceiro) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: 'Tem certeza que deseja remover esse usuário?',
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.usuariosService.remove(usuario.idUsuario).subscribe(
+        this.terceirosService.remove(usuario.id).subscribe(
           () => {
             this.refresh();
             this.snackBar.open('Usuário removido com sucesso!', 'X', {
@@ -84,4 +80,7 @@ export class UsuariosComponent {
       }
     });
   }
+
+
+
 }

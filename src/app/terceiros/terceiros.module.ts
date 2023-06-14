@@ -2,21 +2,22 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
+import { TerceirosRoutingModule } from './terceiros-routing.module';
+import { TerceirosComponent } from './terceiros/terceiros.component';
 import { SharedModule } from '../shared/shared.module';
-import { UsuariosRoutingModule } from './usuarios-routing.module';
-import { UsuariosComponent } from './usuarios-list/usuarios.component';
-import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
+import { TerceiroFormComponent } from './terceiro-form/terceiro-form.component';
+
 
 @NgModule({
   declarations: [
-    UsuariosComponent,
-    UsuarioFormComponent
+    TerceirosComponent,
+    TerceiroFormComponent
   ],
   imports: [
     CommonModule,
-    UsuariosRoutingModule,
+    TerceirosRoutingModule,
     SharedModule,
     AppMaterialModule
   ]
 })
-export class UsuariosModule { }
+export class TerceirosModule { }

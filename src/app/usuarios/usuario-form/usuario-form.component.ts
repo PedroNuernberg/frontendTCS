@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 
 import { Usuario } from '../models/Usuario';
 import { ActivatedRoute } from '@angular/router';
@@ -20,8 +20,8 @@ export class UsuarioFormComponent{
     id: [''],
     nomeUsuario: [''],
     senhaUsuario: [''],
-    tipoUsuario: [''],
-    emailUsuario: [''],
+    tipoUsuario: [0],
+    emailUsuario: ['', [Validators.email, Validators.required]],
     enumStatus: ['']
   });
 
@@ -36,7 +36,7 @@ export class UsuarioFormComponent{
   ngOnInit(): void {
     const usuario: Usuario = this.route.snapshot.data['usuario'];
     this.form.setValue({
-      id: usuario.id,
+      id: usuario.idUsuario,
       nomeUsuario: usuario.nomeUsuario,
       senhaUsuario: usuario.senhaUsuario,
       tipoUsuario: usuario.tipoUsuario,

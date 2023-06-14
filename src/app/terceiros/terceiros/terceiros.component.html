@@ -1,0 +1,96 @@
+<mat-card class="mat-elevation-z8">
+    <mat-card-header></mat-card-header>
+  
+    <mat-card-content>
+      <mat-toolbar color="primary"> Terceiros </mat-toolbar>
+  
+      <div class="column-flex mat-elevation-z8"></div>
+  
+      <mat-table [dataSource]="dataSource">
+  
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="razaoSocial">
+          <mat-header-cell *matHeaderCellDef>Razão Social</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.razaoSocial }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="cnpjTerceiro">
+          <mat-header-cell *matHeaderCellDef>CNPJ</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.cnpjTerceiro }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="enderecoTerceiro">
+          <mat-header-cell *matHeaderCellDef>Endereço</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.enderecoTerceiro }}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="cepTerceiro">
+          <mat-header-cell *matHeaderCellDef>CEP</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.cepTerceiro }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="bairroTerceiro">
+            <mat-header-cell *matHeaderCellDef>Bairro</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.bairroTerceiro }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroTerceiro">
+            <mat-header-cell *matHeaderCellDef>Número</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.numeroTerceiro }}</mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="telefoneTerceiro">
+            <mat-header-cell *matHeaderCellDef>Telefone</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.telefoneTerceiro }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="contatoTerceiro">
+            <mat-header-cell *matHeaderCellDef>Contato</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ element.contatoTerceiro }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="enumStatus">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{ element.enumStatus }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef class="action-column">
+            <button mat-mini-fab color="accent" aria-label="Novo Usuário" (click)="onAdd()" class="action-column-header">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-header-cell>
+  
+          <mat-cell *matCellDef="let element" class="action-column">
+            <button mat-icon-button color="primary" aria-label="Editar Usuário" (click)="onEdit(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+  
+            <button mat-icon-button color="warn" aria-label="Remover Usuário" (click)="onDelete(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+  
+          </mat-cell>
+  
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+  
+  </mat-card-content>
+  
+  <mat-card-footer>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons="">
+  
+    </mat-paginator>
+  
+  
+  </mat-card-footer>
+  
+  </mat-card>
+  

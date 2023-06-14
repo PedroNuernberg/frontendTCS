@@ -11,14 +11,12 @@ import { UsuariosService } from '../services/usuarios.service';
 export class UsuarioResolver implements Resolve<Usuario> {
 
 
-  constructor(private service: UsuariosService) {
-
-  }
+  constructor(private service: UsuariosService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Usuario> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({id: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: '', emailUsuario: '', enumStatus: ''});
+    return of({idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''});
   }
 }

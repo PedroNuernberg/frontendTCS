@@ -25,7 +25,7 @@ export class UsuariosService {
   }
 
   save(record: Partial<Usuario>) {
-    if (record.id) {
+    if (record.idUsuario) {
       return this.update(record);
     }
     return this.create(record);
@@ -36,7 +36,7 @@ export class UsuariosService {
   }
 
   private update(record: Partial<Usuario>) {
-    return this.httpClient.put<Usuario>(`${this.API}${record.id}`, record);
+    return this.httpClient.put<Usuario>(`${this.API}${record.idUsuario}`, record);
   }
 
   remove(id: string) {
