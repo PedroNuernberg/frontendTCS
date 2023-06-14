@@ -11,9 +11,25 @@
         }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Data inicial" formControlName="dataInicialOp">
-      </mat-form-field>
+      <div fxLayout="row wrap">
+        <div fxFlex="40" fxFill fxLayoutAlign="start center">
+          <mat-form-field class="full-width">
+            <mat-label>Data Inicial</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dataInicialOp" name="dataInicialOp">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="40" fxFill fxLayoutAlign="start center">
+          <mat-form-field class="full-width">
+            <mat-label>Horário</mat-label>
+            <input matInput type="time" formControlName="horaInicialOp" name="horaInicialOp" #time>
+          </mat-form-field>
+        </div>
+      </div>
+
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Data final" formControlName="dataFinalOp">

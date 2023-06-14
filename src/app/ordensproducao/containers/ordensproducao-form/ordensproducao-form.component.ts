@@ -22,6 +22,7 @@ export class OrdensproducaoFormComponent implements OnInit {
                   Validators.maxLength(20)]],
     statusOrdemProducao: ['', [Validators.required]],
     dataInicialOp: ['', [Validators.required]],
+    horaInicialOp: [''],
     dataFinalOp: [''],
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
@@ -39,11 +40,16 @@ export class OrdensproducaoFormComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.terceiroService.GetTerceiros()
       .subscribe(dados => this.terceiros = dados);
 
     const ordemproducao: Ordemproducao = this.route.snapshot.data['ordemproducao'];
+    let newDate = this.form.value.dataInicialOp
+
+    this.form.value.dataFinalOp = newDate?.slice(0,9) + "T" + this.form.value.horaInicialOp;
+
+
     this.form.setValue({
       id: ordemproducao.id,
       loteOp: ordemproducao.loteOp,
@@ -53,7 +59,8 @@ export class OrdensproducaoFormComponent implements OnInit {
       qtdePecasOp: ordemproducao.qtdePecasOp,
       terceiro: ordemproducao.terceiro,
       obsOp: ordemproducao.obsOp,
-      enumStatus: ordemproducao.enumStatus
+      enumStatus: ordemproducao.enumStatus,
+      horaInicialOp: ''
     })
   }
 
