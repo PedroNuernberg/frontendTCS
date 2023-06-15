@@ -11,18 +11,15 @@
         }}</mat-error>
       </mat-form-field>
 
-      <div fxLayout="row wrap">
-        <div fxFlex="40" fxFill fxLayoutAlign="start center">
+      <div class="container-datahora">
+        <div class="middle-width p-0">
           <mat-form-field class="full-width">
             <mat-label>Data Inicial</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dataInicialOp" name="dataInicialOp">
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput type="date" formControlName="dataInicialOp" name="dataInicialOp">
           </mat-form-field>
         </div>
 
-        <div fxFlex="40" fxFill fxLayoutAlign="start center">
+        <div class="middle-width p-0">
           <mat-form-field class="full-width">
             <mat-label>Horário</mat-label>
             <input matInput type="time" formControlName="horaInicialOp" name="horaInicialOp" #time>
@@ -30,10 +27,21 @@
         </div>
       </div>
 
+      <div class="container-datahora">
+        <div class="middle-width p-0">
+          <mat-form-field class="full-width">
+            <mat-label>Data Final</mat-label>
+            <input matInput type="date" formControlName="dataFinalOp" name="dataFinalOp">
+          </mat-form-field>
+        </div>
 
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Data final" formControlName="dataFinalOp">
-      </mat-form-field>
+        <div class="middle-width p-0">
+          <mat-form-field class="full-width">
+            <mat-label>Horário</mat-label>
+            <input matInput type="time" formControlName="horaFinalOp" name="horaFinalOp" #time>
+          </mat-form-field>
+        </div>
+      </div>
 
       <mat-form-field class="full-width">
         <mat-label>Status</mat-label>

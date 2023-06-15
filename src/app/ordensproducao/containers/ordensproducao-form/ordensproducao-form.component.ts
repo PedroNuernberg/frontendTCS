@@ -22,8 +22,9 @@ export class OrdensproducaoFormComponent implements OnInit {
                   Validators.maxLength(20)]],
     statusOrdemProducao: ['', [Validators.required]],
     dataInicialOp: ['', [Validators.required]],
-    horaInicialOp: [''],
+    horaInicialOp: ['', [Validators.required]],
     dataFinalOp: [''],
+    horaFinalOp: [''],
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
     enumStatus: [''],
@@ -45,11 +46,7 @@ export class OrdensproducaoFormComponent implements OnInit {
       .subscribe(dados => this.terceiros = dados);
 
     const ordemproducao: Ordemproducao = this.route.snapshot.data['ordemproducao'];
-    let newDate = this.form.value.dataInicialOp
-
-    this.form.value.dataFinalOp = newDate?.slice(0,9) + "T" + this.form.value.horaInicialOp;
-
-
+    
     this.form.setValue({
       id: ordemproducao.id,
       loteOp: ordemproducao.loteOp,
@@ -60,18 +57,27 @@ export class OrdensproducaoFormComponent implements OnInit {
       terceiro: ordemproducao.terceiro,
       obsOp: ordemproducao.obsOp,
       enumStatus: ordemproducao.enumStatus,
-      horaInicialOp: ''
+      horaInicialOp: '',
+      horaFinalOp: ''
     })
   }
 
   onSubmit() {
+    const formValue = Object.assign({}, this.form.value);
+
+    this.form.value.dataInicialOp = formValue.dataInicialOp + "T" + formValue.horaInicialOp + ":00.00";
+
+    if(formValue.dataFinalOp) {
+
+      this.form.value.dataFinalOp = formValue.dataFinalOp + "T" + formValue.horaFinalOp + ":00.00"
+    }
+
     this.service.save(this.form.value)
     .subscribe(result => this.onSuccess(), error => this.onError());
   }
 
   onCancel() {
-    this.location.back();
-
+    this.location.back(); 
   }
 
   private onSuccess() {
