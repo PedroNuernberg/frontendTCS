@@ -47,7 +47,11 @@
         <mat-label>Status</mat-label>
         <mat-select formControlName="statusOrdemProducao">
           <mat-option value="EmProducao">Em produção</mat-option>
-          <mat-option value="AguardandoEnvio">Aguardando Envio</mat-option>
+          <mat-option value="AguardandoColeta">Aguardando coleta</mat-option>
+          <mat-option value="Concluído">Concluído</mat-option>
+          <mat-option value="AguardandoEnvio">Aguardando envio</mat-option>
+          <mat-option value="EmEspera">Em espera</mat-option>
+          <mat-option value="EmTransito">Em trânsito</mat-option>
         </mat-select>
         <mat-error *ngIf="form.get('statusOrdemProducao')?.invalid">{{
           getErrorMessage("statusOrdemProducao")
