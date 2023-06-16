@@ -50,7 +50,7 @@ export class TerceirosComponent {
   }
 
   onEdit(usuario: Terceiro) {
-    this.router.navigate(['editar', usuario.id], {relativeTo: this.route});
+    this.router.navigate(['editar', usuario.idTerceiro], {relativeTo: this.route});
   }
 
   onError(errorMsg: string) {
@@ -66,7 +66,7 @@ export class TerceirosComponent {
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.terceirosService.remove(usuario.id).subscribe(
+        this.terceirosService.remove(usuario.idTerceiro).subscribe(
           () => {
             this.refresh();
             this.snackBar.open('Usuário removido com sucesso!', 'X', {

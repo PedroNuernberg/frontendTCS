@@ -33,7 +33,7 @@ export class OrdensproducaoService {
   }
 
   private create(record: Partial<Ordemproducao>) {
-    return this.httpClient.post<Ordemproducao>(`${this.API}/`, record);
+    return this.httpClient.post<Ordemproducao>(`${this.API}`, record);
   }
 
   private update(record: Partial<Ordemproducao>) {

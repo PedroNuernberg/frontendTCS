@@ -48,7 +48,7 @@ export class TerceiroFormComponent {
 
     const terceiro: Terceiro = this.route.snapshot.data['terceiro'];
     this.form.setValue({
-      id: terceiro.id,
+      id: terceiro.idTerceiro,
       razaoSocial: terceiro.razaoSocial,
       cnpjTerceiro: terceiro.cnpjTerceiro,
       enderecoTerceiro: terceiro.enderecoTerceiro,

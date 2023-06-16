@@ -18,7 +18,8 @@ export class OrdemproducaoResolver implements Resolve<Ordemproducao> {
       return this.service.loadById(route.params['id']);
     }
     return of({id: '', dataInicialOp: '', dataFinalOp: '', statusOrdemProducao: '', qtdePecasOp: 0, loteOp: '', obsOp: '', enumStatus: '',
-      terceiro: {id: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '',
+    usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''},
+      terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '',
       usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}} );
   }
 }

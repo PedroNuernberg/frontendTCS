@@ -1,7 +1,7 @@
 import { Usuario } from './../../usuarios/models/Usuario';
 
 export interface Terceiro {
-    id: string;
+    idTerceiro: string;
     razaoSocial: string;
     cnpjTerceiro: string;
     enderecoTerceiro: string;

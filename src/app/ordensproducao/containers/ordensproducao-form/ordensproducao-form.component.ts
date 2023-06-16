@@ -28,7 +28,8 @@ export class OrdensproducaoFormComponent implements OnInit {
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
     enumStatus: [''],
-    terceiro: [{id: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}]
+    usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''},
+    terceiro: [{idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}]
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -58,21 +59,22 @@ export class OrdensproducaoFormComponent implements OnInit {
       obsOp: ordemproducao.obsOp,
       enumStatus: ordemproducao.enumStatus,
       horaInicialOp: '',
-      horaFinalOp: ''
+      horaFinalOp: '',
+      usuario: {idUsuario: '7', nomeUsuario: 'Pedro2', senhaUsuario: 'Pedro123', tipoUsuario: 2, emailUsuario: 'pedro2@gmail.com', enumStatus: 'Ativo'}
     })
   }
 
   onSubmit() {
     const formValue = Object.assign({}, this.form.value);
 
-    this.form.value.dataInicialOp = formValue.dataInicialOp + "T" + formValue.horaInicialOp + ":00.00";
+    formValue.dataInicialOp = formValue.dataInicialOp + "T" + formValue.horaInicialOp + ":00.00";
 
     if(formValue.dataFinalOp) {
 
-      this.form.value.dataFinalOp = formValue.dataFinalOp + "T" + formValue.horaFinalOp + ":00.00"
+      formValue.dataFinalOp = formValue.dataFinalOp + "T" + formValue.horaFinalOp + ":00.00"
     }
 
-    this.service.save(this.form.value)
+    this.service.save(formValue)
     .subscribe(result => this.onSuccess(), error => this.onError());
   }
 

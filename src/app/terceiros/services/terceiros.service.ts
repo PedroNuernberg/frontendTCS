@@ -21,7 +21,7 @@ export class TerceirosService {
   }
 
   save(record: Partial<Terceiro>) {
-    if (record.id) {
+    if (record.idTerceiro) {
       return this.update(record);
     }
     return this.create(record);
@@ -32,7 +32,7 @@ export class TerceirosService {
   }
 
   private update(record: Partial<Terceiro>) {
-    return this.httpClient.put<Terceiro>(`${this.API}/${record.id}`, record);
+    return this.httpClient.put<Terceiro>(`${this.API}/${record.idTerceiro}`, record);
   }
 
   remove(id: string) {
