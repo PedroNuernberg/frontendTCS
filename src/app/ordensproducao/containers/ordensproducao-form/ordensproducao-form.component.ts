@@ -38,8 +38,6 @@ export class OrdensproducaoFormComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private terceiroService: TerceirosService) {
-    // this.form
-
   }
 
   ngOnInit() {
@@ -47,19 +45,31 @@ export class OrdensproducaoFormComponent implements OnInit {
       .subscribe(dados => this.terceiros = dados);
 
     const ordemproducao: Ordemproducao = this.route.snapshot.data['ordemproducao'];
-    
+    let dataInicial, horaInicial = '';
+    let dataFinal, horaFinal = '';
+
+    if (ordemproducao.dataInicialOp.length > 0) {
+      [dataInicial, horaInicial] = ordemproducao.dataInicialOp.split("T");
+      horaInicial = horaInicial.slice(0, 5);
+    }
+
+    if (ordemproducao.dataFinalOp.length > 0) {
+      [dataFinal, horaFinal] = ordemproducao.dataFinalOp.split("T");
+      horaFinal = horaFinal.slice(0, 5);
+    }
+
     this.form.setValue({
       id: ordemproducao.id,
       loteOp: ordemproducao.loteOp,
       statusOrdemProducao: ordemproducao.statusOrdemProducao,
-      dataInicialOp: ordemproducao.dataInicialOp,
-      dataFinalOp: ordemproducao.dataFinalOp,
+      dataInicialOp: dataInicial as any,
+      dataFinalOp: dataFinal as any,
       qtdePecasOp: ordemproducao.qtdePecasOp,
       terceiro: ordemproducao.terceiro,
       obsOp: ordemproducao.obsOp,
       enumStatus: ordemproducao.enumStatus,
-      horaInicialOp: '',
-      horaFinalOp: '',
+      horaInicialOp: horaInicial,
+      horaFinalOp: horaFinal,
       usuario: {idUsuario: '7', nomeUsuario: 'Pedro2', senhaUsuario: 'Pedro123', tipoUsuario: 2, emailUsuario: 'pedro2@gmail.com', enumStatus: 'Ativo'}
     })
   }
