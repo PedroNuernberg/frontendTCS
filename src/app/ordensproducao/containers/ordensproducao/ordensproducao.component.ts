@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,6 +8,8 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 import { Ordemproducao } from '../../models/ordemproducao';
 import { OrdensproducaoService } from '../../services/ordensproducao.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ordensproducao',
@@ -15,6 +17,11 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
   styleUrls: ['./ordensproducao.component.scss']
 })
 export class OrdensproducaoComponent implements OnInit {
+  ordensproducao!: Ordemproducao[];
+  dataSource: any;
+  readonly displayedColumns = ['category', 'loteOp', 'qtdePecasOp', 'actions'];
+  @ViewChild(MatPaginator) paginator !:MatPaginator;
+  
 
   ordensproducao$: Observable <Ordemproducao[]> | null = null;
 
@@ -30,13 +37,18 @@ export class OrdensproducaoComponent implements OnInit {
   }
 
   refresh() {
-    this.ordensproducao$ = this.ordemProducaoService.list()
-    .pipe(
-      catchError(error => {
-        this.onError('Erro ao carregar ordens de Produção!')
-        return of([])
-      })
-    );
+    this.ordemProducaoService.list().subscribe(res => {
+      this.ordensproducao = res;
+      this.dataSource = new MatTableDataSource<Ordemproducao>(this.ordensproducao);
+      this.dataSource.paginator = this.paginator;
+    });
+    // this.ordensproducao$ = this.ordemProducaoService.list()
+    // .pipe(
+    //   catchError(error => {
+    //     this.onError('Erro ao carregar ordens de Produção!')
+    //     return of([])
+    //   })
+    // );
   }
 
   onError(errorMsg: string) {
