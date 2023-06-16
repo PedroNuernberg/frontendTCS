@@ -26,7 +26,7 @@
         <ng-container matColumnDef="dataInicialOp">
           <mat-header-cell *matHeaderCellDef>Data inicial</mat-header-cell>
           <mat-cell *matCellDef="let ordemproducao">
-            {{ ordemproducao.dataInicialOp }}
+            {{ ordemproducao.dataInicialOp | data }}
           </mat-cell>
         </ng-container>
 
