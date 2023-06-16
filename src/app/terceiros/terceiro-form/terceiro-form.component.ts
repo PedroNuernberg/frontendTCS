@@ -18,7 +18,7 @@ export class TerceiroFormComponent {
   usuarios!: any[];
 
   form = this.formBuilder.group({
-    id: [''],
+    idTerceiro: [''],
     razaoSocial: [''],
     cnpjTerceiro: [''],
     enderecoTerceiro: [''],
@@ -48,7 +48,7 @@ export class TerceiroFormComponent {
 
     const terceiro: Terceiro = this.route.snapshot.data['terceiro'];
     this.form.setValue({
-      id: terceiro.idTerceiro,
+      idTerceiro: terceiro.idTerceiro,
       razaoSocial: terceiro.razaoSocial,
       cnpjTerceiro: terceiro.cnpjTerceiro,
       enderecoTerceiro: terceiro.enderecoTerceiro,

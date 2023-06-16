@@ -17,7 +17,7 @@ export class UsuarioFormComponent{
 
 
   form = this.formBuilder.group({
-    id: [''],
+    idUsuario: [''],
     nomeUsuario: [''],
     senhaUsuario: [''],
     tipoUsuario: [0],
@@ -36,7 +36,7 @@ export class UsuarioFormComponent{
   ngOnInit(): void {
     const usuario: Usuario = this.route.snapshot.data['usuario'];
     this.form.setValue({
-      id: usuario.idUsuario,
+      idUsuario: usuario.idUsuario,
       nomeUsuario: usuario.nomeUsuario,
       senhaUsuario: usuario.senhaUsuario,
       tipoUsuario: usuario.tipoUsuario,

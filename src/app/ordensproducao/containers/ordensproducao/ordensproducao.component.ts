@@ -19,7 +19,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class OrdensproducaoComponent implements OnInit {
   ordensproducao!: Ordemproducao[];
   dataSource: any;
-  readonly displayedColumns = ['category', 'loteOp', 'qtdePecasOp', 'actions'];
+  readonly displayedColumns = ['category', 'loteOp', 'dataInicialOp', 'dataFinalOp', 'qtdePecasOp', 'obsOp', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
   
 

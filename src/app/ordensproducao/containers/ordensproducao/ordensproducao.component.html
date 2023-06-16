@@ -29,11 +29,25 @@
             {{ ordemproducao.dataInicialOp }}
           </mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="dataFinalOp">
+          <mat-header-cell *matHeaderCellDef>Data final</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.dataFinalOp }}
+          </mat-cell>
+        </ng-container>
   
         <ng-container matColumnDef="qtdePecasOp">
           <mat-header-cell *matHeaderCellDef>Qtd peças</mat-header-cell>
           <mat-cell *matCellDef="let ordemproducao">
             {{ ordemproducao.qtdePecasOp }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="obsOp">
+          <mat-header-cell *matHeaderCellDef>Observação</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.obsOp }}
           </mat-cell>
         </ng-container>
   
