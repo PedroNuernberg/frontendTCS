@@ -1,1 +1,40 @@
-<p>login works!</p>
+<!-- <img src="../../../assets/images/blue-fabric.jpg" alt=""> -->
+<div class="background-img card">
+  <div class="">
+    <mat-card>
+      <mat-card-content>
+        <mat-toolbar color="primary">Login </mat-toolbar>
+        <form [formGroup]="form" class="min-width">
+          <mat-form-field class="space-input inputs">
+            <input
+              matInput
+              placeholder="E-mail"
+              formControlName="email"
+              #emaiLogin
+              required="Preencha este campo"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="space-input">
+            <input
+              type="password"
+              matInput
+              placeholder="Senha"
+              formControlName="senha"
+              #senhaLogin
+              required="Preencha este campo"
+            />
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="(emaiLogin)">
+          Entrar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<!--  -->
