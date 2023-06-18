@@ -29,7 +29,7 @@ export class OrdensproducaoFormComponent implements OnInit {
     obsOp: [''],
     enumStatus: [''],
     usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''},
-    terceiro: [{idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}]
+    terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -46,14 +46,14 @@ export class OrdensproducaoFormComponent implements OnInit {
 
     const ordemproducao: Ordemproducao = this.route.snapshot.data['ordemproducao'];
     let dataInicial, horaInicial = '';
-    let dataFinal, horaFinal = '';
+    let dataFinal = '', horaFinal = '';
 
-    if (ordemproducao.dataInicialOp.length > 0) {
+    if (ordemproducao.dataInicialOp !== null) {
       [dataInicial, horaInicial] = ordemproducao.dataInicialOp.split("T");
       horaInicial = horaInicial.slice(0, 5);
     }
 
-    if (ordemproducao.dataFinalOp.length > 0) {
+    if (ordemproducao.dataFinalOp !== null) {
       [dataFinal, horaFinal] = ordemproducao.dataFinalOp.split("T");
       horaFinal = horaFinal.slice(0, 5);
     }

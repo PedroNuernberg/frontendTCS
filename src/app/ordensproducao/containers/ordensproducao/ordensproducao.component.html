@@ -11,8 +11,8 @@
         <ng-container matColumnDef="category">
           <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
           <mat-cell *matCellDef="let ordemproducao">
-            <mat-icon aria-hidden="false" aria-label="Categoria da Op">{{ ordemproducao.statusOrdemProducao | category }}</mat-icon>
-            {{ ordemproducao.statusOrdemProducao }}
+            <mat-icon class="icon-status" aria-hidden="false" aria-label="Categoria da Op">{{ ordemproducao.statusOrdemProducao | category }}</mat-icon>
+            {{ ordemproducao.statusOrdemProducao | nameCategory }}
           </mat-cell>
         </ng-container>
         
@@ -64,7 +64,7 @@
             </button>
   
             <button mat-icon-button color="warn" aria-label="Remover Ordem de Produção" (click)="onRemove(element)">
-              <mat-icon>delete</mat-icon>
+              <mat-icon>close</mat-icon>
             </button>
   
           </mat-cell>

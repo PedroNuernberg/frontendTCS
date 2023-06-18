@@ -6,6 +6,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { CategoryPipe } from './pipes/category.pipe';
 import { DataPipe } from './pipes/data.pipe';
+import { NameCategoryPipe } from './pipes/nameCategory.pipe';
 
 
 
@@ -14,6 +15,7 @@ import { DataPipe } from './pipes/data.pipe';
     ErrorDialogComponent,
     CategoryPipe,
     DataPipe,
+    NameCategoryPipe,
     ConfirmationDialogComponent
   ],
   imports: [
@@ -23,6 +25,7 @@ import { DataPipe } from './pipes/data.pipe';
   exports: [ErrorDialogComponent,
             ConfirmationDialogComponent,
             CategoryPipe,
+            NameCategoryPipe,
             DataPipe]
 })
 export class SharedModule { }
