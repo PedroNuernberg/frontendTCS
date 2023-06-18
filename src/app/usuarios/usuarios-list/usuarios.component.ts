@@ -19,7 +19,7 @@ export class UsuariosComponent {
 
   usuarios!: Usuario[];
   dataSource: any;
-  displayedColumns = ['nomeUsuario', 'tipoUsuario', 'emailUsuario', 'enumStatus', 'actions'];
+  displayedColumns = ['nomeUsuario', 'emailUsuario', 'enumStatus', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
 
 

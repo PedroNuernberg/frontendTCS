@@ -20,7 +20,6 @@ export class UsuarioFormComponent{
     idUsuario: [''],
     nomeUsuario: [''],
     senhaUsuario: [''],
-    tipoUsuario: [0],
     emailUsuario: ['', [Validators.email, Validators.required]],
     enumStatus: ['']
   });
@@ -39,7 +38,6 @@ export class UsuarioFormComponent{
       idUsuario: usuario.idUsuario,
       nomeUsuario: usuario.nomeUsuario,
       senhaUsuario: usuario.senhaUsuario,
-      tipoUsuario: usuario.tipoUsuario,
       emailUsuario: usuario.emailUsuario,
       enumStatus: usuario.enumStatus
     })

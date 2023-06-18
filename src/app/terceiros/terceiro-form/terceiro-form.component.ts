@@ -28,7 +28,7 @@ export class TerceiroFormComponent {
     enumStatus: [''],
     telefoneTerceiro: [''],
     contatoTerceiro: [''],
-    usuario: [{idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}]
+    usuario: [{idUsuario: '', nomeUsuario: '', senhaUsuario: '', emailUsuario: '', enumStatus: ''}]
   });
 
   

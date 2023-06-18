@@ -28,8 +28,8 @@ export class OrdensproducaoFormComponent implements OnInit {
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
     enumStatus: [''],
-    usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''},
-    terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}
+    usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', emailUsuario: '', enumStatus: ''},
+    terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', emailUsuario: '', enumStatus: ''}}
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -70,7 +70,7 @@ export class OrdensproducaoFormComponent implements OnInit {
       enumStatus: ordemproducao.enumStatus,
       horaInicialOp: horaInicial,
       horaFinalOp: horaFinal,
-      usuario: {idUsuario: '7', nomeUsuario: 'Pedro2', senhaUsuario: 'Pedro123', tipoUsuario: 2, emailUsuario: 'pedro2@gmail.com', enumStatus: 'Ativo'}
+      usuario: {idUsuario: '7', nomeUsuario: 'Pedro2', senhaUsuario: 'Pedro123', emailUsuario: 'pedro2@gmail.com', enumStatus: 'Ativo'}
     })
   }
 
