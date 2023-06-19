@@ -7,8 +7,8 @@ export class CategoryPipe implements PipeTransform {
 
   transform(value: string): string {
     switch(value){
-      case 'EmProducao': return 'engineering';
-      case 'AguardandoEnvio': return 'schedule_send';
+      case 'EmProducao': return 'conveyor_belt';
+      case 'AguardandoEnvio': return 'departure_board';
       case 'EmEspera': return 'hourglass_empty';
       case 'Concluído': return 'check';
       case 'EmTransito': return 'local_shipping';
@@ -16,5 +16,4 @@ export class CategoryPipe implements PipeTransform {
     }
     return 'check';
   }
-
 }
