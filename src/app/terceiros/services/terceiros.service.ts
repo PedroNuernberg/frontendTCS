@@ -35,8 +35,9 @@ export class TerceirosService {
     return this.httpClient.put<Terceiro>(`${this.API}/${record.idTerceiro}`, record);
   }
 
-  remove(id: string) {
-    return this.httpClient.delete(`${this.API}${id}`).pipe();
+  public inactivate(record: Partial<Terceiro>) {    
+    record.enumStatus = "Inativo";
+    return this.httpClient.put<Terceiro>(`${this.API}/${record.idTerceiro}`, record);
   }
 }
 

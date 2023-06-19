@@ -39,7 +39,9 @@ export class UsuariosService {
     return this.httpClient.put<Usuario>(`${this.API}${record.idUsuario}`, record);
   }
 
-  remove(id: string) {
-    return this.httpClient.delete(`${this.API}${id}`).pipe();
+  public inactivate(record: Partial<Usuario>) {
+    debugger
+    record.enumStatus = "Inativo";
+    return this.httpClient.put<Usuario>(`${this.API}${record.idUsuario}`, record);
   }
 }

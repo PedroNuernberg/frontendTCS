@@ -22,30 +22,22 @@ export class UsuariosComponent {
   displayedColumns = ['nomeUsuario', 'emailUsuario', 'enumStatus', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
 
-
-
   constructor(
     private usuariosService: UsuariosService,
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     public dialog: MatDialog) {
+
+      this.refresh();
+  }
+
+  refresh() {
     this.usuariosService.GetUsuario().subscribe(res => {
       this.usuarios = res;
       this.dataSource = new MatTableDataSource<Usuario>(this.usuarios);
       this.dataSource.paginator = this.paginator;
-
     });
-  }
-
-  refresh() {
-    // this.usuarios = this.usuariosService.GetUsuario()
-    // .pipe(
-    //   catchError(error => {
-    //     this.onError('Erro ao carregar ordens de Produção!')
-    //     return of([])
-    //   })
-    // );
   }
 
   onAdd() {
@@ -63,23 +55,23 @@ export class UsuariosComponent {
     });
   }
 
-  onDelete(usuario: Usuario) {
+  onInactive(usuario: Usuario) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover esse usuário?',
+      data: 'Tem certeza que deseja inativar esse usuário?',
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.usuariosService.remove(usuario.idUsuario).subscribe(
+        this.usuariosService.inactivate(usuario).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Usuário removido com sucesso!', 'X', {
+            this.snackBar.open('Usuário inativado com sucesso!', 'X', {
               duration: 3000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
            });
           },
-          () => this.onError('Erro ao tentar remover Usuário.')
+          () => this.onError('Erro ao tentar inativar Usuário.')
         );
       }
     });

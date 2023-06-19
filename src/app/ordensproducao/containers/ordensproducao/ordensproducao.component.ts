@@ -27,13 +27,14 @@ export class OrdensproducaoComponent implements OnInit {
 
   //ordemProducaoService: OrdensproducaoService;
 
-  constructor(private ordemProducaoService: OrdensproducaoService,
-              public dialog: MatDialog,
-              private router: Router,
-              private route: ActivatedRoute,
-              private snackBar: MatSnackBar
-            ) {
-              this.refresh();
+  constructor(
+    private ordemProducaoService: OrdensproducaoService,
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar) {
+
+      this.refresh();
   }
 
   refresh() {
@@ -42,13 +43,6 @@ export class OrdensproducaoComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Ordemproducao>(this.ordensproducao);
       this.dataSource.paginator = this.paginator;
     });
-    // this.ordensproducao$ = this.ordemProducaoService.list()
-    // .pipe(
-    //   catchError(error => {
-    //     this.onError('Erro ao carregar ordens de Produção!')
-    //     return of([])
-    //   })
-    // );
   }
 
   onError(errorMsg: string) {
@@ -70,23 +64,23 @@ export class OrdensproducaoComponent implements OnInit {
     this.router.navigate(['editar', ordemproducao.id], {relativeTo: this.route});
   }
 
-  onRemove(ordemproducao: Ordemproducao) {
+  onInactive(ordemproducao: Ordemproducao) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover essa ordem de produção?',
+      data: 'Tem certeza que deseja inativar essa ordem de produção?',
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.ordemProducaoService.remove(ordemproducao.id).subscribe(
+        this.ordemProducaoService.inactivate(ordemproducao).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Ordem de produção removida com sucesso!', 'X', {
+            this.snackBar.open('Ordem de produção inativada com sucesso!', 'X', {
               duration: 3000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
            });
           },
-          () => this.onError('Erro ao tentar remover Ordem de produção.')
+          () => this.onError('Erro ao tentar inativar Ordem de produção.')
         );
       }
     });

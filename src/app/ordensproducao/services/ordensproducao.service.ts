@@ -43,5 +43,10 @@ export class OrdensproducaoService {
   remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
+ 
+  public inactivate(record: Partial<Ordemproducao>) {
+    record.enumStatus = "Inativo";
+    return this.httpClient.put<Ordemproducao>(`${this.API}/${record.id}`, record);
+  }
 }
   
