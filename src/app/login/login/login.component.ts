@@ -1,8 +1,9 @@
-import { LoginService } from './../services/login.service';
-import { Component } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { LoginService } from './../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -10,43 +11,49 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  form = this.formBuilder.group({
-    email: [''],
-    senha: ['']
-  });
+  form: FormGroup;
+
+  mostrarMenuEmitter = new EventEmitter<boolean>();
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private route: ActivatedRoute,
     private service: LoginService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private router: Router) {
+      this.form = this.formBuilder.group({
+        username: [''],
+        password: ['']
+      })
   }
 
-  // ngOnInit(): void {
+  ngOnInit() {
+  }
 
-  //   this.LoginService.GetLogin()
-  //     .subscribe(dados => this.login = dados);
+  onSignIn() {
+    this.service.signIn(this.form.value).subscribe(
+      resp => {
+        localStorage.setItem('token', resp.accessToken);
+        localStorage.setItem('refreshToken', resp.refreshToken);
+        localStorage.setItem('user_id', resp.id.toString());
+        localStorage.setItem('user_nome', resp.username.toString());
+        this.mostrarMenuEmitter.emit(true);
+        this.router.navigate(['/ordensProducao'])
 
-  //   const login: Login = this.route.snapshot.data['login'];
-  //   this.form.setValue({
-  //     email: login.email,
-  //     senha: login.senha,
-  //   })
-  // }
+        console.log(localStorage);
+      },
+      erro => {
+        this.onError();
+      }
 
-  // onSubmit() {
-  //   this.service.save(this.form.value)
-  //   .subscribe(result => this.onSuccess(), error => this.onError());
-  // }
+    )
+  }
+  
+  private onError() {
+    this.snackBar.open('Erro realizar login!', '', {duration: 3000 });
 
-  // private onSuccess() {
-  //   this.snackBar.open('Login realizado!', '', {duration: 3000 });
-  // }
-
-  // private onError() {
-  //   this.snackBar.open('Ops, tente novamente!', '', {duration: 3000 });
-  // }
+  }
 }
 
 

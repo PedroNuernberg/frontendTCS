@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './template/nav/nav.component';
+import { AuthGuard } from './login/auth/auth.guard';
+import { LoginService } from './login/services/login.service';
 
 
 @NgModule({
@@ -29,7 +31,7 @@ import { NavComponent } from './template/nav/nav.component';
     MatSidenavModule,
     MatListModule
   ],
-  providers: [],
+  providers: [AuthGuard, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
