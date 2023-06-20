@@ -40,7 +40,6 @@ export class UsuariosService {
   }
 
   public inactivate(record: Partial<Usuario>) {
-    debugger
     record.enumStatus = "Inativo";
     return this.httpClient.put<Usuario>(`${this.API}${record.idUsuario}`, record);
   }

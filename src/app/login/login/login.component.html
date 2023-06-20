@@ -9,7 +9,7 @@
             <input
               matInput
               placeholder="E-mail"
-              formControlName="email"
+              formControlName="username"
               #emaiLogin
               required="Preencha este campo"
             />
@@ -20,7 +20,7 @@
               type="password"
               matInput
               placeholder="Senha"
-              formControlName="senha"
+              formControlName="password"
               #senhaLogin
               required="Preencha este campo"
             />
@@ -29,9 +29,7 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="(emaiLogin)">
-          Entrar
-        </button>
+        <button mat-raised-button color="primary" (click)="onSignIn()">Entrar</button>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fronendTCS';
+
+  mostrarMenu: boolean = false;
+
+  // constructor(private login: LoginService) {
+
+  // }
+
+  //  ngOnInit() {
+  //    this.login.mostrarMenuEmitter.subscribe(
+  //      mostrar => this.mostrarMenu = mostrar
+  //    );
+
+  //  }
 }

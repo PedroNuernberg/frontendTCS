@@ -15,8 +15,6 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
 
-  mostrarMenuEmitter = new EventEmitter<boolean>();
-
   constructor(private formBuilder: NonNullableFormBuilder,
     private route: ActivatedRoute,
     private service: LoginService,
@@ -38,7 +36,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('refreshToken', resp.refreshToken);
         localStorage.setItem('user_id', resp.id.toString());
         localStorage.setItem('user_nome', resp.username.toString());
-        this.mostrarMenuEmitter.emit(true);
         this.router.navigate(['/ordensProducao'])
 
         console.log(localStorage);
