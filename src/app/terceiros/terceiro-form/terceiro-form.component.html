@@ -4,41 +4,49 @@
       <mat-toolbar color="primary">Terceiro </mat-toolbar>
       <form [formGroup]="form" class="min-width">
         <mat-form-field class="full-width">
-          <input matInput placeholder="Razão Social" formControlName="razaoSocial" #razaoSocial>        
+          <mat-label>Razão Social</mat-label>
+          <input matInput formControlName="razaoSocialTerceiro" #razaoSocialTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="CNPJ" formControlName="cnpjTerceiro" #cnpjTerceiro>        
+          <mat-label>CNPJ</mat-label> 
+          <input matInput formControlName="cnpjTerceiro" #cnpjTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Endereço" formControlName="enderecoTerceiro" #enderecoTerceiro>        
+          <mat-label>Endereço</mat-label> 
+          <input matInput formControlName="enderecoTerceiro" #enderecoTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="CEP" formControlName="cepTerceiro" #cepTerceiro>        
+          <mat-label>CEP</mat-label>
+          <input matInput formControlName="cepTerceiro" #cepTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Bairro" formControlName="bairroTerceiro" #bairroTerceiro>        
+          <mat-label>Bairro</mat-label>
+          <input matInput formControlName="bairroTerceiro" #bairroTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Número" formControlName="numeroTerceiro" #numeroTerceiro>        
+          <mat-label>n°</mat-label>
+          <input matInput formControlName="numeroTerceiro" #numeroTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Telefone" formControlName="telefoneTerceiro" #telefoneTerceiro>        
+          <mat-label>Telefone</mat-label>
+          <input matInput formControlName="telefoneTerceiro" #telefoneTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Contato" formControlName="contatoTerceiro" #contatoTerceiro>        
+          <mat-label>Contato</mat-label>
+          <input matInput formControlName="contatoTerceiro" #contatoTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
           <mat-label>Usuário</mat-label>
           <mat-select formControlName="usuario">
-            <mat-option *ngFor="let usuario of usuarios" [value]="usuario">{{ usuario.nomeUsuario }}</mat-option>
+            <mat-option *ngFor="let usuario of usuarios" [value]="usuario">{{ usuario.userName }}</mat-option>
           </mat-select>
         </mat-form-field>
 

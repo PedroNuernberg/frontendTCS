@@ -22,12 +22,14 @@ export class OrdensproducaoFormComponent implements OnInit {
                   Validators.maxLength(20)]],
     statusOrdemProducao: ['', [Validators.required]],
     dataInicialOp: ['', [Validators.required]],
-    horaInicialOp: [''],
+    horaInicialOp: ['', [Validators.required]],
     dataFinalOp: [''],
+    horaFinalOp: [''],
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
     enumStatus: [''],
-    terceiro: [{id: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', tipoUsuario: 0, emailUsuario: '', enumStatus: ''}}]
+    usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''},
+    terceiro: {idTerceiro: '', razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''}}
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -36,8 +38,6 @@ export class OrdensproducaoFormComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private terceiroService: TerceirosService) {
-    // this.form
-
   }
 
   ngOnInit() {
@@ -45,33 +45,54 @@ export class OrdensproducaoFormComponent implements OnInit {
       .subscribe(dados => this.terceiros = dados);
 
     const ordemproducao: Ordemproducao = this.route.snapshot.data['ordemproducao'];
-    let newDate = this.form.value.dataInicialOp
+    let dataInicial, horaInicial = '';
+    let dataFinal = '', horaFinal = '';
 
-    this.form.value.dataFinalOp = newDate?.slice(0,9) + "T" + this.form.value.horaInicialOp;
+    if (ordemproducao.dataInicialOp !== null) {
+      [dataInicial, horaInicial] = ordemproducao.dataInicialOp.split("T");
+      horaInicial = horaInicial.slice(0, 5);
+    }
 
+    if (ordemproducao.dataFinalOp !== null) {
+      [dataFinal, horaFinal] = ordemproducao.dataFinalOp.split("T");
+      horaFinal = horaFinal.slice(0, 5);
+    }
 
     this.form.setValue({
       id: ordemproducao.id,
       loteOp: ordemproducao.loteOp,
       statusOrdemProducao: ordemproducao.statusOrdemProducao,
-      dataInicialOp: ordemproducao.dataInicialOp,
-      dataFinalOp: ordemproducao.dataFinalOp,
+      dataInicialOp: dataInicial as any,
+      dataFinalOp: dataFinal as any,
       qtdePecasOp: ordemproducao.qtdePecasOp,
       terceiro: ordemproducao.terceiro,
       obsOp: ordemproducao.obsOp,
       enumStatus: ordemproducao.enumStatus,
-      horaInicialOp: ''
+      horaInicialOp: horaInicial,
+      horaFinalOp: horaFinal,
+      usuario: ordemproducao.terceiro.usuario
     })
   }
 
   onSubmit() {
-    this.service.save(this.form.value)
+    
+    const formValue = Object.assign({}, this.form.value);
+
+    formValue.usuario = formValue.terceiro?.usuario;
+
+    formValue.dataInicialOp = formValue.dataInicialOp + "T" + formValue.horaInicialOp + ":00.00";
+
+    if(formValue.dataFinalOp) {
+
+      formValue.dataFinalOp = formValue.dataFinalOp + "T" + formValue.horaFinalOp + ":00.00"
+    }
+
+    this.service.save(formValue)
     .subscribe(result => this.onSuccess(), error => this.onError());
   }
 
   onCancel() {
-    this.location.back();
-
+    this.location.back(); 
   }
 
   private onSuccess() {

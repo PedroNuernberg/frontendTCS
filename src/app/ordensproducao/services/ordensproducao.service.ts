@@ -33,7 +33,7 @@ export class OrdensproducaoService {
   }
 
   private create(record: Partial<Ordemproducao>) {
-    return this.httpClient.post<Ordemproducao>(`${this.API}/`, record);
+    return this.httpClient.post<Ordemproducao>(`${this.API}`, record);
   }
 
   private update(record: Partial<Ordemproducao>) {
@@ -42,6 +42,11 @@ export class OrdensproducaoService {
 
   remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  }
+ 
+  public inactivate(record: Partial<Ordemproducao>) {
+    record.enumStatus = "Inativo";
+    return this.httpClient.put<Ordemproducao>(`${this.API}/${record.id}`, record);
   }
 }
   

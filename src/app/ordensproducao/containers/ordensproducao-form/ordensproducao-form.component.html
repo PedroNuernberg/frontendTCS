@@ -4,25 +4,23 @@
     <mat-toolbar color="primary">Ordem de Produção</mat-toolbar>
     <form [formGroup]="form" class="min-width">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Lote Op" formControlName="loteOp" #loteOp>
+        <mat-label>Lote Op</mat-label>
+        <input matInput formControlName="loteOp" #loteOp>
         <mat-hint align="end">{{ loteOp.value.length || 0 }}/20 </mat-hint>
         <mat-error *ngIf="form.get('loteOp')?.invalid">{{
           getErrorMessage("loteOp")
         }}</mat-error>
       </mat-form-field>
 
-      <div fxLayout="row wrap">
-        <div fxFlex="40" fxFill fxLayoutAlign="start center">
+      <div class="container-datahora">
+        <div class="middle-width p-0">
           <mat-form-field class="full-width">
             <mat-label>Data Inicial</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dataInicialOp" name="dataInicialOp">
-            <mat-hint>DD/MM/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput type="date" formControlName="dataInicialOp" name="dataInicialOp">
           </mat-form-field>
         </div>
 
-        <div fxFlex="40" fxFill fxLayoutAlign="start center">
+        <div class="middle-width p-0">
           <mat-form-field class="full-width">
             <mat-label>Horário</mat-label>
             <input matInput type="time" formControlName="horaInicialOp" name="horaInicialOp" #time>
@@ -30,16 +28,31 @@
         </div>
       </div>
 
+      <div class="container-datahora">
+        <div class="middle-width p-0">
+          <mat-form-field class="full-width">
+            <mat-label>Data Final</mat-label>
+            <input matInput type="date" formControlName="dataFinalOp" name="dataFinalOp">
+          </mat-form-field>
+        </div>
 
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Data final" formControlName="dataFinalOp">
-      </mat-form-field>
+        <div class="middle-width p-0">
+          <mat-form-field class="full-width">
+            <mat-label>Horário</mat-label>
+            <input matInput type="time" formControlName="horaFinalOp" name="horaFinalOp" #time>
+          </mat-form-field>
+        </div>
+      </div>
 
       <mat-form-field class="full-width">
         <mat-label>Status</mat-label>
         <mat-select formControlName="statusOrdemProducao">
           <mat-option value="EmProducao">Em produção</mat-option>
-          <mat-option value="AguardandoEnvio">Aguardando Envio</mat-option>
+          <mat-option value="AguardandoColeta">Aguardando coleta</mat-option>
+          <mat-option value="Concluído">Concluído</mat-option>
+          <mat-option value="AguardandoEnvio">Aguardando envio</mat-option>
+          <mat-option value="EmEspera">Em espera</mat-option>
+          <mat-option value="EmTransito">Em trânsito</mat-option>
         </mat-select>
         <mat-error *ngIf="form.get('statusOrdemProducao')?.invalid">{{
           getErrorMessage("statusOrdemProducao")
@@ -47,7 +60,8 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Qtd peças" formControlName="qtdePecasOp">
+        <mat-label>Qtd peças</mat-label>
+        <input matInput formControlName="qtdePecasOp">
       </mat-form-field>
 
       <mat-form-field class="full-width">
@@ -61,12 +75,14 @@
       <mat-form-field class="full-width">
         <mat-label>Terceiro</mat-label>
         <mat-select formControlName="terceiro">
-          <mat-option *ngFor="let terceiro of terceiros" [value]="terceiro">{{ terceiro.razaoSocial }}</mat-option>
+          <mat-option *ngFor="let terceiro of terceiros" [value]="terceiro">{{ terceiro.razaoSocialTerceiro
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Oservação" formControlName="obsOp" #obsOp>
+        <mat-label>Observação</mat-label>
+        <input matInput formControlName="obsOp" #obsOp>
         <mat-hint align="end">{{ obsOp.value.length || 0 }}/255 </mat-hint>
       </mat-form-field>
 

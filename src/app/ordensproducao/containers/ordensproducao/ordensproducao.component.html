@@ -1,27 +1,87 @@
-<mat-card>
+<mat-card class="mat-elevation-z8">
+  <mat-card-header></mat-card-header>
+
   <mat-card-content>
     <mat-toolbar color="primary"> Ordem de Produção </mat-toolbar>
 
-    <div class="column-flex mat-elevation-z8">
+    <div class="column-flex mat-elevation-z8"></div>
 
+      <mat-table [dataSource]="dataSource">
 
-    <app-ordensproducao-list
-      *ngIf="ordensproducao$ | async as ordensproducao; else loading"
-      [ordensproducao]="ordensproducao"
-      (add)="onAdd()"
-      (edit)="onEdit($event)"
-      (remove)="onRemove($event)"
-    ></app-ordensproducao-list>
+        <ng-container matColumnDef="category">
+          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            <mat-icon class="icon-status" aria-hidden="false" aria-label="Categoria da Op">{{ ordemproducao.statusOrdemProducao | category }}</mat-icon>
+            {{ ordemproducao.statusOrdemProducao | nameCategory }}
+          </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="loteOp">
+          <mat-header-cell *matHeaderCellDef>OP nº</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.loteOp }}
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="dataInicialOp">
+          <mat-header-cell *matHeaderCellDef>Data inicial</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.dataInicialOp | data }}
+          </mat-cell>
+        </ng-container>
 
-    <ng-template #loading>
-      <div class="loading-spinner">
-        <mat-spinner></mat-spinner>
-      </div>
-    </ng-template>
-  </div>
+        <ng-container matColumnDef="dataFinalOp">
+          <mat-header-cell *matHeaderCellDef>Data final</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.dataFinalOp | data }}
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="qtdePecasOp">
+          <mat-header-cell *matHeaderCellDef>Qtd peças</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.qtdePecasOp }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="obsOp">
+          <mat-header-cell *matHeaderCellDef>Observação</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.obsOp }}
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef class="action-column">
+            <button mat-mini-fab color="accent" aria-label="Nova Ordem de Produção" (click)="onAdd()" class="action-column-header">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-header-cell>
+  
+          <mat-cell *matCellDef="let element" class="action-column">
+            <button mat-icon-button color="primary" aria-label="Editar Ordem de Produção" (click)="onEdit(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+  
+            <button mat-icon-button color="warn" aria-label="Remover Ordem de Produção" (click)="onInactive(element)">
+              <mat-icon>close</mat-icon>
+            </button>
+  
+          </mat-cell>
+  
+        </ng-container>
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
   </mat-card-content>
 
-
-
+  <mat-card-footer>
+    <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons="">
+  
+    </mat-paginator>
+  
+  </mat-card-footer>
 
 </mat-card>

@@ -15,7 +15,7 @@
   
         <ng-container matColumnDef="razaoSocial">
           <mat-header-cell *matHeaderCellDef>Razão Social</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{ element.razaoSocial }}</mat-cell>
+          <mat-cell *matCellDef="let element">{{ element.razaoSocialTerceiro }}</mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="cnpjTerceiro">
@@ -70,8 +70,8 @@
               <mat-icon>edit</mat-icon>
             </button>
   
-            <button mat-icon-button color="warn" aria-label="Remover Usuário" (click)="onDelete(element)">
-              <mat-icon>delete</mat-icon>
+            <button mat-icon-button color="warn" aria-label="Inativar Usuário" (click)="onInactive(element)">
+              <mat-icon>close</mat-icon>
             </button>
   
           </mat-cell>
@@ -85,7 +85,7 @@
   </mat-card-content>
   
   <mat-card-footer>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons="">
+    <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons="">
   
     </mat-paginator>
   

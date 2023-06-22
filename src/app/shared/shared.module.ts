@@ -5,6 +5,8 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { CategoryPipe } from './pipes/category.pipe';
+import { DataPipe } from './pipes/data.pipe';
+import { NameCategoryPipe } from './pipes/nameCategory.pipe';
 
 
 
@@ -12,6 +14,8 @@ import { CategoryPipe } from './pipes/category.pipe';
   declarations: [
     ErrorDialogComponent,
     CategoryPipe,
+    DataPipe,
+    NameCategoryPipe,
     ConfirmationDialogComponent
   ],
   imports: [
@@ -20,6 +24,8 @@ import { CategoryPipe } from './pipes/category.pipe';
   ],
   exports: [ErrorDialogComponent,
             ConfirmationDialogComponent,
-            CategoryPipe]
+            CategoryPipe,
+            NameCategoryPipe,
+            DataPipe]
 })
 export class SharedModule { }

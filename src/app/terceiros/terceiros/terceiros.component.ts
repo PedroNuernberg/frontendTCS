@@ -27,21 +27,15 @@ export class TerceirosComponent {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     public dialog: MatDialog) {
+      this.refresh();
+  }
+
+  refresh() {
     this.terceirosService.GetTerceiros().subscribe(res => {
       this.terceiros = res;
       this.dataSource = new MatTableDataSource<Terceiro>(this.terceiros);
       this.dataSource.paginator = this.paginator;
     });
-  }
-
-  refresh() {
-    // this.usuarios = this.usuariosService.GetUsuario()
-    // .pipe(
-    //   catchError(error => {
-    //     this.onError('Erro ao carregar ordens de Produção!')
-    //     return of([])
-    //   })
-    // );
   }
 
   onAdd() {
@@ -50,7 +44,7 @@ export class TerceirosComponent {
   }
 
   onEdit(usuario: Terceiro) {
-    this.router.navigate(['editar', usuario.id], {relativeTo: this.route});
+    this.router.navigate(['editar', usuario.idTerceiro], {relativeTo: this.route});
   }
 
   onError(errorMsg: string) {
@@ -59,23 +53,23 @@ export class TerceirosComponent {
     });
   }
 
-  onDelete(usuario: Terceiro) {
+  onInactive(terceiro: Terceiro) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: 'Tem certeza que deseja remover esse usuário?',
+       data: 'Tem certeza que deseja inativar esse terceiro?',
     });
 
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
-        this.terceirosService.remove(usuario.id).subscribe(
+        this.terceirosService.inactivate(terceiro).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Usuário removido com sucesso!', 'X', {
+            this.snackBar.open('Terceiro inativado com sucesso!', 'X', {
               duration: 3000,
               verticalPosition: 'top',
               horizontalPosition: 'center'
            });
           },
-          () => this.onError('Erro ao tentar remover Usuário.')
+          () => this.onError('Erro ao tentar inativar Terceiro.')
         );
       }
     });

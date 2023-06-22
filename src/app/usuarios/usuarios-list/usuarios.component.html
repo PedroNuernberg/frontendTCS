@@ -15,22 +15,17 @@
 
       <ng-container matColumnDef="nomeUsuario">
         <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.nomeUsuario }}</mat-cell>
+        <mat-cell *matCellDef="let element">{{ element.userName }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="senhaUsuario">
         <mat-header-cell *matHeaderCellDef>Senha</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.senhaUsuario }}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="tipoUsuario">
-        <mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.tipoUsuario }}</mat-cell>
+        <mat-cell *matCellDef="let element">{{ element.password }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="emailUsuario">
         <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.emailUsuario }}</mat-cell>
+        <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="enumStatus">
@@ -50,8 +45,8 @@
             <mat-icon>edit</mat-icon>
           </button>
 
-          <button mat-icon-button color="warn" aria-label="Remover Usuário" (click)="onDelete(element)">
-            <mat-icon>delete</mat-icon>
+          <button mat-icon-button color="warn" aria-label="Remover Usuário" (click)="onInactive(element)">
+            <mat-icon>close</mat-icon>
           </button>
 
         </mat-cell>
@@ -65,7 +60,7 @@
 </mat-card-content>
 
 <mat-card-footer>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons="">
+  <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons="">
 
   </mat-paginator>
 
