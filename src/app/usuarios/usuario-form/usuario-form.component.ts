@@ -17,10 +17,10 @@ export class UsuarioFormComponent{
 
 
   form = this.formBuilder.group({
-    idUsuario: [''],
-    nomeUsuario: [''],
-    senhaUsuario: [''],
-    emailUsuario: ['', [Validators.email, Validators.required]],
+    id: [''],
+    userName: [''],
+    password: [''],
+    email: ['', [Validators.email, Validators.required]],
     enumStatus: ['']
   });
 
@@ -35,10 +35,10 @@ export class UsuarioFormComponent{
   ngOnInit(): void {
     const usuario: Usuario = this.route.snapshot.data['usuario'];
     this.form.setValue({
-      idUsuario: usuario.idUsuario,
-      nomeUsuario: usuario.nomeUsuario,
-      senhaUsuario: usuario.senhaUsuario,
-      emailUsuario: usuario.emailUsuario,
+      id: usuario.id,
+      userName: usuario.userName,
+      password: usuario.password,
+      email: usuario.email,
       enumStatus: usuario.enumStatus
     })
   }

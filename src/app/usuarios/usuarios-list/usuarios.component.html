@@ -15,17 +15,17 @@
 
       <ng-container matColumnDef="nomeUsuario">
         <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.nomeUsuario }}</mat-cell>
+        <mat-cell *matCellDef="let element">{{ element.userName }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="senhaUsuario">
         <mat-header-cell *matHeaderCellDef>Senha</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.senhaUsuario }}</mat-cell>
+        <mat-cell *matCellDef="let element">{{ element.password }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="emailUsuario">
         <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.emailUsuario }}</mat-cell>
+        <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="enumStatus">

@@ -5,7 +5,7 @@
       <form [formGroup]="form" class="min-width">
         <mat-form-field class="full-width">
           <mat-label>Razão Social</mat-label>
-          <input matInput formControlName="razaoSocial" #razaoSocial>        
+          <input matInput formControlName="razaoSocialTerceiro" #razaoSocialTerceiro>        
         </mat-form-field>
 
         <mat-form-field class="full-width">
@@ -46,7 +46,7 @@
         <mat-form-field class="full-width">
           <mat-label>Usuário</mat-label>
           <mat-select formControlName="usuario">
-            <mat-option *ngFor="let usuario of usuarios" [value]="usuario">{{ usuario.nomeUsuario }}</mat-option>
+            <mat-option *ngFor="let usuario of usuarios" [value]="usuario">{{ usuario.userName }}</mat-option>
           </mat-select>
         </mat-form-field>
 

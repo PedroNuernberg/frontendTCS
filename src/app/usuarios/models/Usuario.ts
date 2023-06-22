@@ -1,7 +1,7 @@
 export interface Usuario {
-  idUsuario: string;
-  nomeUsuario: string;
-  senhaUsuario: string;
-  emailUsuario: string;
+  id: string;
+  email: string;
   enumStatus: string;
+  userName: string;
+  password: string;
 }

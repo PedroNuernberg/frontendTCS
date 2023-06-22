@@ -19,7 +19,7 @@ export class TerceiroFormComponent {
 
   form = this.formBuilder.group({
     idTerceiro: [''],
-    razaoSocial: [''],
+    razaoSocialTerceiro: [''],
     cnpjTerceiro: [''],
     enderecoTerceiro: [''],
     cepTerceiro: [''],
@@ -28,7 +28,7 @@ export class TerceiroFormComponent {
     enumStatus: [''],
     telefoneTerceiro: [''],
     contatoTerceiro: [''],
-    usuario: [{idUsuario: '', nomeUsuario: '', senhaUsuario: '', emailUsuario: '', enumStatus: ''}]
+    usuario: [{id: '', userName: '', password: '', email: '', enumStatus: ''}]
   });
 
   
@@ -49,7 +49,7 @@ export class TerceiroFormComponent {
     const terceiro: Terceiro = this.route.snapshot.data['terceiro'];
     this.form.setValue({
       idTerceiro: terceiro.idTerceiro,
-      razaoSocial: terceiro.razaoSocial,
+      razaoSocialTerceiro: terceiro.razaoSocialTerceiro,
       cnpjTerceiro: terceiro.cnpjTerceiro,
       enderecoTerceiro: terceiro.enderecoTerceiro,
       cepTerceiro: terceiro.cepTerceiro,
@@ -80,6 +80,4 @@ export class TerceiroFormComponent {
   private onError() {
     this.snackBar.open('Erro ao incluir Terceiro!', '', {duration: 3000 });
   }
-
-
 }

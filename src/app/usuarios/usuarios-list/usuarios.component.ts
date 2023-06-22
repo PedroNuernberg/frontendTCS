@@ -46,7 +46,7 @@ export class UsuariosComponent {
   }
 
   onEdit(usuario: Usuario) {
-    this.router.navigate(['editar', usuario.idUsuario], {relativeTo: this.route});
+    this.router.navigate(['editar', usuario.id], {relativeTo: this.route});
   }
 
   onError(errorMsg: string) {

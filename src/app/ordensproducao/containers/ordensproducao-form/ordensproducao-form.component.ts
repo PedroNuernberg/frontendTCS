@@ -28,8 +28,8 @@ export class OrdensproducaoFormComponent implements OnInit {
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
     enumStatus: [''],
-    usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', emailUsuario: '', enumStatus: ''},
-    terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {idUsuario: '', nomeUsuario: '', senhaUsuario: '', emailUsuario: '', enumStatus: ''}}
+    usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''},
+    terceiro: {idTerceiro: '', razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''}}
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -70,12 +70,15 @@ export class OrdensproducaoFormComponent implements OnInit {
       enumStatus: ordemproducao.enumStatus,
       horaInicialOp: horaInicial,
       horaFinalOp: horaFinal,
-      usuario: {idUsuario: '7', nomeUsuario: 'Pedro2', senhaUsuario: 'Pedro123', emailUsuario: 'pedro2@gmail.com', enumStatus: 'Ativo'}
+      usuario: ordemproducao.terceiro.usuario
     })
   }
 
   onSubmit() {
+    
     const formValue = Object.assign({}, this.form.value);
+
+    formValue.usuario = formValue.terceiro?.usuario;
 
     formValue.dataInicialOp = formValue.dataInicialOp + "T" + formValue.horaInicialOp + ":00.00";
 

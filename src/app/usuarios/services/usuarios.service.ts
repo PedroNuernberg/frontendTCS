@@ -25,7 +25,7 @@ export class UsuariosService {
   }
 
   save(record: Partial<Usuario>) {
-    if (record.idUsuario) {
+    if (record.id) {
       return this.update(record);
     }
     return this.create(record);
@@ -36,11 +36,11 @@ export class UsuariosService {
   }
 
   private update(record: Partial<Usuario>) {
-    return this.httpClient.put<Usuario>(`${this.API}${record.idUsuario}`, record);
+    return this.httpClient.put<Usuario>(`${this.API}${record.id}`, record);
   }
 
   public inactivate(record: Partial<Usuario>) {
     record.enumStatus = "Inativo";
-    return this.httpClient.put<Usuario>(`${this.API}${record.idUsuario}`, record);
+    return this.httpClient.put<Usuario>(`${this.API}${record.id}`, record);
   }
 }
