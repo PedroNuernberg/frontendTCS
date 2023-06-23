@@ -45,8 +45,9 @@
 
         <mat-form-field class="full-width">
           <mat-label>Usuário</mat-label>
-          <mat-select formControlName="usuario">
-            <mat-option *ngFor="let usuario of usuarios" [value]="usuario">{{ usuario.userName }}</mat-option>
+          <mat-select formControlName="usuario" [compareWith]="compararUsuarios">
+            <mat-option *ngFor="let usuario of usuarios"
+            [value]="usuario">{{ usuario.username }}</mat-option>
           </mat-select>
         </mat-form-field>
 

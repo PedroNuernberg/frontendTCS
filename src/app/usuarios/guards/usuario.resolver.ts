@@ -17,6 +17,6 @@ export class UsuarioResolver implements Resolve<Usuario> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({id: '', userName: '', password: '', email: '', enumStatus: ''});
+    return of({id: '', username: '', password: '', email: '', enumStatus: ''});
   }
 }

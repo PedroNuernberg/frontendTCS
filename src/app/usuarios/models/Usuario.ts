@@ -2,6 +2,6 @@ export interface Usuario {
   id: string;
   email: string;
   enumStatus: string;
-  userName: string;
+  username: string;
   password: string;
 }

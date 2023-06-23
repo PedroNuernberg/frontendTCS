@@ -36,7 +36,7 @@ export class UsuarioFormComponent{
     const usuario: Usuario = this.route.snapshot.data['usuario'];
     this.form.setValue({
       id: usuario.id,
-      userName: usuario.userName,
+      userName: usuario.username,
       password: usuario.password,
       email: usuario.email,
       enumStatus: usuario.enumStatus

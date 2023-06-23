@@ -28,8 +28,8 @@ export class OrdensproducaoFormComponent implements OnInit {
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
     enumStatus: [''],
-    usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''},
-    terceiro: {idTerceiro: '', razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''}}
+    usuario: {id: '', username: '', password: '', email: '', enumStatus: ''},
+    terceiro: {idTerceiro: '', razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', username: '', password: '', email: '', enumStatus: ''}}
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,

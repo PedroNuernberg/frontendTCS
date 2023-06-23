@@ -16,6 +16,6 @@ export class TerceiroResolver implements Resolve<Terceiro> {
     if (route.params && route.params['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({idTerceiro: '',  razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''} });
+    return of({idTerceiro: '',  razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', username: '', password: '', email: '', enumStatus: ''} });
   }
 }

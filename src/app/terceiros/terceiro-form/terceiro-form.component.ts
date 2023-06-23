@@ -28,7 +28,7 @@ export class TerceiroFormComponent {
     enumStatus: [''],
     telefoneTerceiro: [''],
     contatoTerceiro: [''],
-    usuario: [{id: '', userName: '', password: '', email: '', enumStatus: ''}]
+    usuario: [{id: '', username: '', password: '', email: '', enumStatus: ''}]
   });
 
   
@@ -44,7 +44,9 @@ export class TerceiroFormComponent {
   ngOnInit(): void {
 
     this.usuarioService.GetUsuario()
-      .subscribe(dados => this.usuarios = dados);
+      .subscribe(dados => {
+        this.usuarios = dados
+      } );
 
     const terceiro: Terceiro = this.route.snapshot.data['terceiro'];
     this.form.setValue({
@@ -79,5 +81,11 @@ export class TerceiroFormComponent {
 
   private onError() {
     this.snackBar.open('Erro ao incluir Terceiro!', '', {duration: 3000 });
+  }
+
+  compararUsuarios(obj1: any,  obj2: any) {
+    debugger
+    return obj1 && obj2 ? (obj1.id === obj2.id && obj1.username === obj2.username) : obj1 === obj2;
+
   }
 }
