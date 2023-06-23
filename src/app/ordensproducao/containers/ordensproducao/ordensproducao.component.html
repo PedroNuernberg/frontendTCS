@@ -1,4 +1,75 @@
 <mat-card class="mat-elevation-z8">
+
+  <!-- <div class="search-container">
+    <form [formGroup]="filter" class="min-width">
+
+      <div>
+        <mat-form-field class="full-width">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="opPorIdOp" #opPorIdOp>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Lote Op</mat-label>
+          <input matInput formControlName="lote" #lote>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="full-width">
+          <mat-label>Inicial - de</mat-label>
+          <input matInput type="date" formControlName="dataInicialInicio" name="dataInicialInicio">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Inicial - até</mat-label>
+          <input matInput type="date" formControlName="dataInicialFinal" name="dataInicialFinal">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="full-width">
+          <mat-label>Final - de</mat-label>
+          <input matInput type="date" formControlName="dataFinalInicio" name="dataFinalInicio">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Final - até</mat-label>
+          <input matInput type="date" formControlName="dataFinalFinal" name="dataFinalFinal">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="full-width">
+          <mat-label>Terceiro</mat-label>
+          <mat-select formControlName="opPorTerceiro">
+            <mat-option *ngFor="let terceiro of terceiros"
+            [value]="terceiro">{{ terceiro.razaoSocialTerceiro}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="EmProducao">Em produção</mat-option>
+            <mat-option value="AguardandoColeta">Aguardando coleta</mat-option>
+            <mat-option value="Concluído">Concluído</mat-option>
+            <mat-option value="AguardandoEnvio">Aguardando envio</mat-option>
+            <mat-option value="EmEspera">Em espera</mat-option>
+            <mat-option value="EmTransito">Em trânsito</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      
+
+    </form>
+
+
+
+  </div> -->
+
   <mat-card-header></mat-card-header>
 
   <mat-card-content>
@@ -7,6 +78,13 @@
     <div class="column-flex mat-elevation-z8"></div>
 
       <mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="terceiro">
+          <mat-header-cell *matHeaderCellDef>Terceiro</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.terceiro.razaoSocial }}
+          </mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="category">
           <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>

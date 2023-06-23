@@ -1,15 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 import { Ordemproducao } from '../../models/ordemproducao';
 import { OrdensproducaoService } from '../../services/ordensproducao.service';
-import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ordensproducao',
@@ -17,9 +18,22 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./ordensproducao.component.scss']
 })
 export class OrdensproducaoComponent implements OnInit {
+  // terceiros!: any[];
+
+  // filter = this.formBuilder.group({
+  //   status: [''],
+  //   lote: [''], 
+  //   dataInicialInicio: [''],
+  //   dataInicialFinal: [''],
+  //   dataFinalInicio: [''],
+  //   dataFinalFinal: [''],
+  //   opPorTerceiro: [''],
+  //   opPorIdOp: [''], 
+  // });
+
   ordensproducao!: Ordemproducao[];
   dataSource: any;
-  readonly displayedColumns = ['category', 'loteOp', 'dataInicialOp', 'dataFinalOp', 'qtdePecasOp', 'obsOp', 'actions'];
+  readonly displayedColumns = ['category', 'loteOp', 'dataInicialOp', 'dataFinalOp', 'terceiro', 'qtdePecasOp', 'obsOp', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
   
 
@@ -32,7 +46,8 @@ export class OrdensproducaoComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private formBuilder: NonNullableFormBuilder) {
 
       this.refresh();
   }
@@ -52,7 +67,6 @@ export class OrdensproducaoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   onAdd() {
