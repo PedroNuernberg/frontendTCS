@@ -124,4 +124,9 @@ export class OrdensproducaoFormComponent implements OnInit {
 
     return 'Campo Inválido';
   }
+
+  compararTerceiros(obj1: any,  obj2: any) {
+    return obj1 && obj2 ? (obj1.idTerceiro === obj2.idTerceiro && obj1.razaoSocial === obj2.razaoSocial) : obj1 === obj2;
+
+  }
 }

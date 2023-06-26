@@ -84,7 +84,6 @@ export class TerceiroFormComponent {
   }
 
   compararUsuarios(obj1: any,  obj2: any) {
-    debugger
     return obj1 && obj2 ? (obj1.id === obj2.id && obj1.username === obj2.username) : obj1 === obj2;
 
   }
