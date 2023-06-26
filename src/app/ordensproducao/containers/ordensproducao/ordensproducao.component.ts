@@ -12,6 +12,8 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 import { Ordemproducao } from '../../models/ordemproducao';
 import { OrdensproducaoService } from '../../services/ordensproducao.service';
 import { TerceirosService } from 'src/app/terceiros/services/terceiros.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-ordensproducao',
@@ -162,6 +164,18 @@ export class OrdensproducaoComponent implements OnInit {
           () => this.onError('Erro ao tentar inativar Ordem de produção.')
         );
       }
+    });
+  }
+
+  public convertToPDF() {
+    html2canvas(document.getElementById("tabelaOrdemProdução")!).then(canvas => {
+      // Few necessary setting options
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+      var width = pdf.internal.pageSize.getWidth();
+      var height = canvas.height * width / canvas.width;
+      pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
+      pdf.save('output.pdf'); // Generated PDF
     });
   }
 }

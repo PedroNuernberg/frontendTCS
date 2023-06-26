@@ -61,6 +61,7 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="onFilter()">Filtar </button>
+        <button mat-raised-button color="primary" (click)="download()">PDF </button>
       </div>
 
     </form>
@@ -74,7 +75,7 @@
 
     <div class="column-flex mat-elevation-z8"></div>
 
-      <mat-table [dataSource]="dataSource">
+      <mat-table [dataSource]="dataSource" id="tabelaOrdemProdução">
 
         <ng-container matColumnDef="terceiro">
           <mat-header-cell *matHeaderCellDef>Terceiro</mat-header-cell>
