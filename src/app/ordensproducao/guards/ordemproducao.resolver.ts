@@ -19,7 +19,7 @@ export class OrdemproducaoResolver implements Resolve<Ordemproducao> {
     }
     return of({id: '', dataInicialOp: '', dataFinalOp: '', statusOrdemProducao: '', qtdePecasOp: 0, loteOp: '', obsOp: '', enumStatus: '',
     usuario: {id: '', username: '', password: '', email: '', enumStatus: ''},
-      terceiro: {idTerceiro: '', razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '',
+      terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '',
       usuario: {id: '', username: '', password: '', email: '', enumStatus: ''}}} );
   }
 }

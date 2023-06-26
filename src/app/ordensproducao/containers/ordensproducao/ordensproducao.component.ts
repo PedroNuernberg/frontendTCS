@@ -11,6 +11,7 @@ import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/err
 
 import { Ordemproducao } from '../../models/ordemproducao';
 import { OrdensproducaoService } from '../../services/ordensproducao.service';
+import { TerceirosService } from 'src/app/terceiros/services/terceiros.service';
 
 @Component({
   selector: 'app-ordensproducao',
@@ -18,18 +19,18 @@ import { OrdensproducaoService } from '../../services/ordensproducao.service';
   styleUrls: ['./ordensproducao.component.scss']
 })
 export class OrdensproducaoComponent implements OnInit {
-  // terceiros!: any[];
+  terceiros!: any[];
 
-  // filter = this.formBuilder.group({
-  //   status: [''],
-  //   lote: [''], 
-  //   dataInicialInicio: [''],
-  //   dataInicialFinal: [''],
-  //   dataFinalInicio: [''],
-  //   dataFinalFinal: [''],
-  //   opPorTerceiro: [''],
-  //   opPorIdOp: [''], 
-  // });
+  filter = this.formBuilder.group({
+    status: [''],
+    lote: [''], 
+    dataInicialInicio: [''],
+    dataFinalInicio: [''],
+    dataInicialFinal: [''],
+    dataFinalFinal: [''],
+    opPorTerceiro: [0],
+    opPorIdOp: [''], 
+  });
 
   ordensproducao!: Ordemproducao[];
   dataSource: any;
@@ -47,7 +48,8 @@ export class OrdensproducaoComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private formBuilder: NonNullableFormBuilder) {
+    private formBuilder: NonNullableFormBuilder,
+    private terceiroService: TerceirosService) {
 
       this.refresh();
   }
@@ -67,11 +69,74 @@ export class OrdensproducaoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.terceiroService.GetTerceiros()
+      .subscribe(dados => this.terceiros = dados);
+  }
+
+  onFilter() {
+    const formValue = Object.assign({}, this.filter.value);
+
+    if(formValue.dataInicialInicio || formValue.dataFinalInicio) {
+      var dataInicial = formValue.dataInicialInicio;
+      var dataFinal = formValue.dataFinalInicio;
+
+      if(dataInicial && dataFinal) {
+        formValue.dataInicialInicio = dataInicial + "T" + "00:00:00";
+        formValue.dataFinalInicio = dataFinal + "T" + "23:59:59";
+      }
+
+      if(dataInicial && !dataFinal) {
+        formValue.dataInicialInicio = dataInicial + "T" + "00:00:00";
+        formValue.dataFinalInicio = dataInicial + "T" + "23:59:59";
+      }
+
+      if(!dataInicial && dataFinal) {
+        formValue.dataInicialInicio = dataFinal + "T" + "00:00:00";
+        formValue.dataFinalInicio = dataFinal + "T" + "23:59:59";
+      }
+    }
+
+    if(!formValue.dataInicialInicio || !formValue.dataFinalInicio) {
+      formValue.dataInicialInicio = "1900-01-01" + "T" + "00:00:00";
+        formValue.dataFinalInicio = "2100-12-31" + "T" + "23:59:59";
+    }
+
+
+
+    if(formValue.dataInicialFinal || formValue.dataFinalFinal) {
+      var dataInicial = formValue.dataInicialFinal;
+      var dataFinal = formValue.dataFinalFinal;
+
+      if(dataInicial && dataFinal) {
+        formValue.dataInicialFinal = dataInicial + "T" + "00:00:00";
+        formValue.dataFinalFinal = dataFinal + "T" + "23:59:59";
+      }
+
+      if(dataInicial && !dataFinal) {
+        formValue.dataInicialFinal = dataInicial + "T" + "00:00:00";
+        formValue.dataFinalFinal = dataInicial + "T" + "23:59:59";
+      }
+
+      if(!dataInicial && dataFinal) {
+        formValue.dataInicialFinal = dataFinal + "T" + "00:00:00";
+        formValue.dataFinalFinal = dataFinal + "T" + "23:59:59";
+      }
+    }
+
+    if(!formValue.dataInicialFinal || !formValue.dataFinalFinal) {
+      formValue.dataInicialFinal = "1900-01-01" + "T" + "00:00:00";
+        formValue.dataFinalFinal = "2100-12-31" + "T" + "23:59:59";
+    }
+
+    this.ordemProducaoService.filter(formValue).subscribe(res => {
+      this.ordensproducao = res;
+      this.dataSource = new MatTableDataSource<Ordemproducao>(this.ordensproducao);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   onAdd() {
     this.router.navigate(['novo'], {relativeTo: this.route});
-
   }
 
   onEdit(ordemproducao: Ordemproducao) {

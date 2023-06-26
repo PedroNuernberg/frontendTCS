@@ -29,7 +29,7 @@ export class OrdensproducaoFormComponent implements OnInit {
     obsOp: [''],
     enumStatus: [''],
     usuario: {id: '', username: '', password: '', email: '', enumStatus: ''},
-    terceiro: {idTerceiro: '', razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', username: '', password: '', email: '', enumStatus: ''}}
+    terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', username: '', password: '', email: '', enumStatus: ''}}
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
