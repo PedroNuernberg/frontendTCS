@@ -27,7 +27,6 @@ export class OrdensproducaoFormComponent implements OnInit {
     horaFinalOp: [''],
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
-    enumStatus: [''],
     usuario: {id: '', username: '', password: '', email: '', enumStatus: ''},
     terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', username: '', password: '', email: '', enumStatus: ''}}
   });
@@ -67,7 +66,6 @@ export class OrdensproducaoFormComponent implements OnInit {
       qtdePecasOp: ordemproducao.qtdePecasOp,
       terceiro: ordemproducao.terceiro,
       obsOp: ordemproducao.obsOp,
-      enumStatus: ordemproducao.enumStatus,
       horaInicialOp: horaInicial,
       horaFinalOp: horaFinal,
       usuario: ordemproducao.terceiro.usuario

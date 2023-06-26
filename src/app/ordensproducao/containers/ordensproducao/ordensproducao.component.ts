@@ -14,6 +14,9 @@ import { OrdensproducaoService } from '../../services/ordensproducao.service';
 import { TerceirosService } from 'src/app/terceiros/services/terceiros.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-ordensproducao',
@@ -79,8 +82,8 @@ export class OrdensproducaoComponent implements OnInit {
     const formValue = Object.assign({}, this.filter.value);
 
     if(formValue.dataInicialInicio || formValue.dataFinalInicio) {
-      var dataInicial = formValue.dataInicialInicio;
-      var dataFinal = formValue.dataFinalInicio;
+      let dataInicial = formValue.dataInicialInicio;
+      let dataFinal = formValue.dataFinalInicio;
 
       if(dataInicial && dataFinal) {
         formValue.dataInicialInicio = dataInicial + "T" + "00:00:00";
@@ -106,8 +109,8 @@ export class OrdensproducaoComponent implements OnInit {
 
 
     if(formValue.dataInicialFinal || formValue.dataFinalFinal) {
-      var dataInicial = formValue.dataInicialFinal;
-      var dataFinal = formValue.dataFinalFinal;
+      let dataInicial = formValue.dataInicialFinal;
+      let dataFinal = formValue.dataFinalFinal;
 
       if(dataInicial && dataFinal) {
         formValue.dataInicialFinal = dataInicial + "T" + "00:00:00";
@@ -172,10 +175,26 @@ export class OrdensproducaoComponent implements OnInit {
       // Few necessary setting options
       const contentDataURL = canvas.toDataURL('image/png')
       let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-      var width = pdf.internal.pageSize.getWidth();
-      var height = canvas.height * width / canvas.width;
+      let width = pdf.internal.pageSize.getWidth();
+      let height = canvas.height * width / canvas.width;
       pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
       pdf.save('output.pdf'); // Generated PDF
     });
   }
+
+  // exportToPDF() {
+  //   const documentDefinition = {
+  //     content: [
+  //       {
+  //         table: {
+  //           body: [
+  //             document.getElementById("tabelaOrdemProdução")
+  //           ]
+  //         }
+  //       }
+  //     ]
+  //   };
+  
+  //   pdfMake.createPdf(documentDefinition).open();
+  // }
 }

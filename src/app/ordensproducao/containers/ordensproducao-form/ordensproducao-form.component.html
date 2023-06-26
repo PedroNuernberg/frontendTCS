@@ -65,14 +65,6 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-label>Situação</mat-label>
-        <mat-select formControlName="enumStatus">
-          <mat-option value="Ativo">Ativo</mat-option>
-          <mat-option value="Inativo">Inativo</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
         <mat-label>Terceiro</mat-label>
         <mat-select formControlName="terceiro" [compareWith]="compararTerceiros">
           <mat-option *ngFor="let terceiro of terceiros"
