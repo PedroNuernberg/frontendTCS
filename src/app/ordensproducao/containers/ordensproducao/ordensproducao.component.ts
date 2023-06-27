@@ -128,11 +128,6 @@ export class OrdensproducaoComponent implements OnInit {
       }
     }
 
-    if(!formValue.dataInicialFinal || !formValue.dataFinalFinal) {
-      formValue.dataInicialFinal = "1900-01-01" + "T" + "00:00:00";
-        formValue.dataFinalFinal = "2100-12-31" + "T" + "23:59:59";
-    }
-
     this.ordemProducaoService.filter(formValue).subscribe(res => {
       this.ordensproducao = res;
       this.dataSource = new MatTableDataSource<Ordemproducao>(this.ordensproducao);
