@@ -27,9 +27,8 @@ export class OrdensproducaoFormComponent implements OnInit {
     horaFinalOp: [''],
     qtdePecasOp: [0, [Validators.required]],
     obsOp: [''],
-    enumStatus: [''],
-    usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''},
-    terceiro: {idTerceiro: '', razaoSocialTerceiro: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', userName: '', password: '', email: '', enumStatus: ''}}
+    usuario: {id: '', username: '', password: '', email: '', enumStatus: ''},
+    terceiro: {idTerceiro: '', razaoSocial: '', cnpjTerceiro: '', enderecoTerceiro: '', cepTerceiro: '', bairroTerceiro: '', numeroTerceiro: '', enumStatus: '', telefoneTerceiro: '', contatoTerceiro: '', usuario: {id: '', username: '', password: '', email: '', enumStatus: ''}}
   });
 
   constructor(private formBuilder: NonNullableFormBuilder,
@@ -67,7 +66,6 @@ export class OrdensproducaoFormComponent implements OnInit {
       qtdePecasOp: ordemproducao.qtdePecasOp,
       terceiro: ordemproducao.terceiro,
       obsOp: ordemproducao.obsOp,
-      enumStatus: ordemproducao.enumStatus,
       horaInicialOp: horaInicial,
       horaFinalOp: horaFinal,
       usuario: ordemproducao.terceiro.usuario
@@ -123,5 +121,10 @@ export class OrdensproducaoFormComponent implements OnInit {
     }
 
     return 'Campo Inválido';
+  }
+
+  compararTerceiros(obj1: any,  obj2: any) {
+    return obj1 && obj2 ? (obj1.idTerceiro === obj2.idTerceiro && obj1.razaoSocial === obj2.razaoSocial) : obj1 === obj2;
+
   }
 }
