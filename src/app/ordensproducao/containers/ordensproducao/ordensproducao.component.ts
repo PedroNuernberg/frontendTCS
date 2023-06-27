@@ -178,7 +178,7 @@ export class OrdensproducaoComponent implements OnInit {
       let width = pdf.internal.pageSize.getWidth();
       let height = canvas.height * width / canvas.width;
       pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
-      pdf.save('output.pdf'); // Generated PDF
+      pdf.save('ordemproducao.pdf'); // Generated PDF
     });
   }
 
