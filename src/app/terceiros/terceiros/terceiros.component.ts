@@ -18,7 +18,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmat
 export class TerceirosComponent {
   terceiros!: Terceiro[];
   dataSource: any;
-  displayedColumns = ['razaoSocial', 'cnpjTerceiro', 'enderecoTerceiro', 'cepTerceiro', 'bairroTerceiro', 'numeroTerceiro', 'telefoneTerceiro', 'contatoTerceiro', 'enumStatus', 'actions'];
+  displayedColumns = ['razaoSocial', 'cnpjTerceiro', 'enderecoTerceiro', 'bairroTerceiro', 'usuario', 'telefoneTerceiro', 'enumStatus', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
 
   constructor(
@@ -43,8 +43,8 @@ export class TerceirosComponent {
 
   }
 
-  onEdit(usuario: Terceiro) {
-    this.router.navigate(['editar', usuario.idTerceiro], {relativeTo: this.route});
+  onEdit(terceiro: Terceiro) {
+    this.router.navigate(['editar', terceiro.idTerceiro], {relativeTo: this.route});
   }
 
   onError(errorMsg: string) {

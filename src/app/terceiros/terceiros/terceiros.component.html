@@ -53,6 +53,13 @@
             <mat-cell *matCellDef="let element">{{ element.contatoTerceiro }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="usuario">
+          <mat-header-cell *matHeaderCellDef>Usuário</mat-header-cell>
+          <mat-cell *matCellDef="let terceiro">
+            {{ terceiro.usuario.username }}
+          </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="enumStatus">
           <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
           <mat-cell *matCellDef="let element">{{ element.enumStatus }}</mat-cell>

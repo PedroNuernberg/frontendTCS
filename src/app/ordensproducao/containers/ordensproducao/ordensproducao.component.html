@@ -91,6 +91,13 @@
             {{ ordemproducao.statusOrdemProducao | nameCategory }}
           </mat-cell>
         </ng-container>
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+          <mat-cell *matCellDef="let ordemproducao">
+            {{ ordemproducao.id }}
+          </mat-cell>
+        </ng-container>
         
         <ng-container matColumnDef="loteOp">
           <mat-header-cell *matHeaderCellDef>OP nº</mat-header-cell>

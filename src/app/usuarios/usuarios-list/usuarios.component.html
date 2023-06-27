@@ -9,12 +9,12 @@
     <mat-table [dataSource]="dataSource">
 
       <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
         <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="nomeUsuario">
-        <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Usuário</mat-header-cell>
         <mat-cell *matCellDef="let element">{{ element.username }}</mat-cell>
       </ng-container>
 

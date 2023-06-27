@@ -39,7 +39,7 @@ export class OrdensproducaoComponent implements OnInit {
 
   ordensproducao!: Ordemproducao[];
   dataSource: any;
-  readonly displayedColumns = ['category', 'loteOp', 'dataInicialOp', 'dataFinalOp', 'terceiro', 'qtdePecasOp', 'obsOp', 'actions'];
+  readonly displayedColumns = ['category', 'id', 'loteOp', 'dataInicialOp', 'dataFinalOp', 'terceiro', 'qtdePecasOp', 'obsOp', 'actions'];
   @ViewChild(MatPaginator) paginator !:MatPaginator;
   
 
