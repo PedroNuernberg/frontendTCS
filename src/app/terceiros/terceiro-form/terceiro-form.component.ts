@@ -25,7 +25,6 @@ export class TerceiroFormComponent {
     cepTerceiro: [''],
     bairroTerceiro: [''],
     numeroTerceiro: [''],
-    enumStatus: [''],
     telefoneTerceiro: [''],
     contatoTerceiro: [''],
     usuario: [{id: '', username: '', password: '', email: '', enumStatus: ''}]
@@ -57,7 +56,6 @@ export class TerceiroFormComponent {
       cepTerceiro: terceiro.cepTerceiro,
       bairroTerceiro: terceiro.bairroTerceiro,
       numeroTerceiro: terceiro.numeroTerceiro,
-      enumStatus: terceiro.enumStatus,
       telefoneTerceiro: terceiro.telefoneTerceiro,
       contatoTerceiro: terceiro.contatoTerceiro,
       usuario: terceiro.usuario

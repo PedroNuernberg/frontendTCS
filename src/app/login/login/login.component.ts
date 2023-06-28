@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.removeItem('token');
   }
 
   onSignIn() {
@@ -37,8 +38,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user_id', resp.id.toString());
         localStorage.setItem('user_nome', resp.username.toString());
         this.router.navigate(['/ordensProducao'])
-
-        console.log(localStorage);
       },
       erro => {
         this.onError();

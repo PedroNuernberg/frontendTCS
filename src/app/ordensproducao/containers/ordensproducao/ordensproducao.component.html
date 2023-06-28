@@ -2,30 +2,33 @@
   <mat-toolbar color="primary"> Ordem de Produção </mat-toolbar>
 
   <div class="search-container">
-    <form [formGroup]="filter" class="min-width">
 
-      <div>
-        <mat-form-field class="full-width">
+    <form [formGroup]="filter" class="min-width inputs-search">
+      <mat-card-subtitle class="titulo-filtros">Filtros de busca</mat-card-subtitle>
+      <div class="form-width">
+        <mat-form-field class="full-width margin-search">
           <mat-label>Código</mat-label>
-          <input matInput formControlName="opPorIdOp" #opPorIdOp>
+          <input matInput formControlName="opPorIdOp" #opPorIdOp />
         </mat-form-field>
 
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width margin-search">
           <mat-label>Lote Op</mat-label>
-          <input matInput formControlName="lote" #lote>
+          <input matInput formControlName="lote" #lote />
         </mat-form-field>
 
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width margin-search">
           <mat-label>Terceiro</mat-label>
           <mat-select formControlName="opPorTerceiro">
             <mat-option value=""></mat-option>
-            <mat-option *ngFor="let terceiro of terceiros"
-            [value]="terceiro.idTerceiro">{{ terceiro.razaoSocial}}
+            <mat-option
+              *ngFor="let terceiro of terceiros"
+              [value]="terceiro.idTerceiro"
+              >{{ terceiro.razaoSocial }}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width margin-search">
           <mat-label>Status</mat-label>
           <mat-select formControlName="status">
             <mat-option value=""></mat-option>
@@ -40,124 +43,176 @@
       </div>
 
       <div>
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width margin-search">
           <mat-label>Inicial - de</mat-label>
-          <input matInput type="date" formControlName="dataInicialInicio" name="dataInicialInicio">
+          <input
+            matInput
+            type="date"
+            formControlName="dataInicialInicio"
+            name="dataInicialInicio"
+          />
         </mat-form-field>
 
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width margin-search">
           <mat-label>Inicial - até</mat-label>
-          <input matInput type="date" formControlName="dataFinalInicio" name="dataFinalInicio">
+          <input
+            matInput
+            type="date"
+            formControlName="dataFinalInicio"
+            name="dataFinalInicio"
+          />
         </mat-form-field>
 
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width margin-search">
           <mat-label>Final - de</mat-label>
-          <input matInput type="date" formControlName="dataInicialFinal" name="dataInicialFinal">
+          <input
+            matInput
+            type="date"
+            formControlName="dataInicialFinal"
+            name="dataInicialFinal"
+          />
         </mat-form-field>
 
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width margin-search">
           <mat-label>Final - até</mat-label>
-          <input matInput type="date" formControlName="dataFinalFinal" name="dataFinalFinal">
+          <input
+            matInput
+            type="date"
+            formControlName="dataFinalFinal"
+            name="dataFinalFinal"
+          />
         </mat-form-field>
 
-        <button mat-raised-button color="primary" (click)="onFilter()">Filtar </button>
-        <button mat-raised-button color="primary" (click)="convertToPDF()">PDF </button>
+          <button mat-raised-button
+            color="primary"
+            class="buttons-search"
+            (click)="onFilter()"
+          >
+            <mat-icon>filter_alt</mat-icon>Filtrar
+          </button>
+          <button mat-raised-button
+          color="primary"
+          (click)="convertToPDF()"
+          class="buttons-search">
+            <mat-icon>download </mat-icon>PDF
+          </button>
+        
       </div>
-
+      
     </form>
-
   </div>
 
   <mat-card-header></mat-card-header>
 
   <mat-card-content>
-    
-
     <div class="column-flex mat-elevation-z8"></div>
 
-      <mat-table [dataSource]="dataSource" id="tabelaOrdemProdução">
+    <mat-table [dataSource]="dataSource" id="tabelaOrdemProdução">
+      <ng-container matColumnDef="terceiro">
+        <mat-header-cell *matHeaderCellDef>Terceiro</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.terceiro.razaoSocial }}
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="terceiro">
-          <mat-header-cell *matHeaderCellDef>Terceiro</mat-header-cell>
-          <mat-cell *matCellDef="let ordemproducao">
-            {{ ordemproducao.terceiro.razaoSocial }}
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          <mat-icon
+            class="icon-status"
+            aria-hidden="false"
+            aria-label="Categoria da Op"
+            >{{ ordemproducao.statusOrdemProducao | category }}</mat-icon
+          >
+          {{ ordemproducao.statusOrdemProducao | nameCategory }}
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="category">
-          <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
-          <mat-cell *matCellDef="let ordemproducao">
-            <mat-icon class="icon-status" aria-hidden="false" aria-label="Categoria da Op">{{ ordemproducao.statusOrdemProducao | category }}</mat-icon>
-            {{ ordemproducao.statusOrdemProducao | nameCategory }}
-          </mat-cell>
-        </ng-container>
-        
-        <ng-container matColumnDef="loteOp">
-          <mat-header-cell *matHeaderCellDef>OP nº</mat-header-cell>
-          <mat-cell *matCellDef="let ordemproducao">
-            {{ ordemproducao.loteOp }}
-          </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="dataInicialOp">
-          <mat-header-cell *matHeaderCellDef>Data inicial</mat-header-cell>
-          <mat-cell *matCellDef="let ordemproducao">
-            {{ ordemproducao.dataInicialOp | data }}
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.id }}
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="dataFinalOp">
-          <mat-header-cell *matHeaderCellDef>Data final</mat-header-cell>
-          <mat-cell *matCellDef="let ordemproducao">
-            {{ ordemproducao.dataFinalOp | data }}
-          </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="qtdePecasOp">
-          <mat-header-cell *matHeaderCellDef>Qtd peças</mat-header-cell>
-          <mat-cell *matCellDef="let ordemproducao">
-            {{ ordemproducao.qtdePecasOp }}
-          </mat-cell>
-        </ng-container>
+      <ng-container matColumnDef="loteOp">
+        <mat-header-cell *matHeaderCellDef>OP nº</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.loteOp }}
+        </mat-cell>
+      </ng-container>
 
-        <ng-container matColumnDef="obsOp">
-          <mat-header-cell *matHeaderCellDef>Observação</mat-header-cell>
-          <mat-cell *matCellDef="let ordemproducao">
-            {{ ordemproducao.obsOp }}
-          </mat-cell>
-        </ng-container>
-  
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef class="action-column">
-            <button mat-mini-fab color="accent" aria-label="Nova Ordem de Produção" (click)="onAdd()" class="action-column-header">
-              <mat-icon>add</mat-icon>
-            </button>
-          </mat-header-cell>
-  
-          <mat-cell *matCellDef="let element" class="action-column">
-            <button mat-icon-button color="primary" aria-label="Editar Ordem de Produção" (click)="onEdit(element)">
-              <mat-icon>edit</mat-icon>
-            </button>
-  
-            <button mat-icon-button color="warn" aria-label="Remover Ordem de Produção" (click)="onInactive(element)">
-              <mat-icon>close</mat-icon>
-            </button>
-  
-          </mat-cell>
-  
-        </ng-container>
-  
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
+      <ng-container matColumnDef="dataInicialOp">
+        <mat-header-cell *matHeaderCellDef>Data inicial</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.dataInicialOp | data }}
+        </mat-cell>
+      </ng-container>
 
+      <ng-container matColumnDef="dataFinalOp">
+        <mat-header-cell *matHeaderCellDef>Data final</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.dataFinalOp | data }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="qtdePecasOp">
+        <mat-header-cell *matHeaderCellDef>Qtd peças</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.qtdePecasOp }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="obsOp">
+        <mat-header-cell *matHeaderCellDef>Observação</mat-header-cell>
+        <mat-cell *matCellDef="let ordemproducao">
+          {{ ordemproducao.obsOp }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="action-column">
+          <button
+            mat-mini-fab
+            color="accent"
+            aria-label="Nova Ordem de Produção"
+            (click)="onAdd()"
+            class="action-column-header"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let element" class="action-column">
+          <button
+            mat-icon-button
+            color="primary"
+            aria-label="Editar Ordem de Produção"
+            (click)="onEdit(element)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="Remover Ordem de Produção"
+            (click)="onInactive(element)"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
   </mat-card-content>
 
   <mat-card-footer>
     <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons="">
-  
     </mat-paginator>
-  
   </mat-card-footer>
-
 </mat-card>
+
+
