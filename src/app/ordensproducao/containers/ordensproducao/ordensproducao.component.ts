@@ -14,9 +14,6 @@ import { OrdensproducaoService } from '../../services/ordensproducao.service';
 import { TerceirosService } from 'src/app/terceiros/services/terceiros.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import * as pdfMake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-ordensproducao',
@@ -176,20 +173,4 @@ export class OrdensproducaoComponent implements OnInit {
       pdf.save('ordemproducao.pdf'); // Generated PDF
     });
   }
-
-  // exportToPDF() {
-  //   const documentDefinition = {
-  //     content: [
-  //       {
-  //         table: {
-  //           body: [
-  //             document.getElementById("tabelaOrdemProdução")
-  //           ]
-  //         }
-  //       }
-  //     ]
-  //   };
-  
-  //   pdfMake.createPdf(documentDefinition).open();
-  // }
 }
